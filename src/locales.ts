@@ -4,7 +4,7 @@ export const languages = {'pt-br':'Português (Brasil)',en:'English',es:'Españo
 export const htmlLang = {'pt-br':'pt-BR',en:'en',es:'es'};
 export interface Copy {
  title:string; description:string; nav:string[]; skip:string; menu:string; close:string; language:string;
- presents:string; welcome:string; intro:string; subtitle:string; role:string; ticket:string; ticketDetail:string;
+ welcome:string; intro:string; subtitle:string; ticket:string;
  portrait:string; missingPortrait:string; missingCover:string; cover:string; home:string;
  act:string; works:string; worksIntro:string; view:string; newTab:string; featured:string;
  descriptions:string[]; about:string; aboutLead:string; bio:string; study:string;
@@ -15,7 +15,7 @@ export const translations:Record<Locale,Copy> = {
  'pt-br': {
  title:'Trícia Linewberg — UX/UI & Product Designer | The Legend', description:'Conheça os projetos de Trícia Linewberg: pensamento de produto, design de interfaces e narrativas digitais. Portfólio de UX/UI e Product Design.',
  nav:['Projetos','Sobre','Contato'],skip:'Ir para o conteúdo',menu:'Abrir menu',close:'Fechar menu',language:'Selecionar idioma',
- presents:'THE LEGEND APRESENTA',welcome:'Boas-vindas, boas-vindas —',intro:'você chegou ao portfólio de',subtitle:'Um grande espetáculo de pensamento de produto, design de interfaces e narrativas digitais.',role:'UX/UI & Product Designer',ticket:'ADMIT ONE — conhecer os projetos',ticketDetail:'Uma entrada. Muitas possibilidades.',
+ welcome:'Bem-vindo, bem-vinda.',intro:'Você chegou ao portfólio de',subtitle:'Um espetáculo de estratégia de produto, design de interfaces e narrativas digitais.',ticket:'ADMIT ONE — conhecer os projetos',
  portrait:'Trícia Linewberg usando cartola em um retrato teatral',missingPortrait:'Retrato original em breve',missingCover:'Capa original em breve',cover:'Capa do projeto',home:'Trícia Linewberg — início',
  act:'Ato',works:'Os grandes atos',worksIntro:'Projetos selecionados. Cada desafio, uma história para transformar em experiência.',view:'Ver no Behance',newTab:'abre em uma nova aba',featured:'1º lugar · Hack4Freedom 2026',
  descriptions:["Carteira Bitcoin · 1º lugar no Hack4Freedom 2026.","Educação Bitcoin por meio da beleza.","Website de ficção · Projeto de fã.","Auditoria UX/UI e redesign de experiência."],
@@ -27,7 +27,7 @@ export const translations:Record<Locale,Copy> = {
  en: {
  title:'Trícia Linewberg — UX/UI & Product Designer | The Legend',description:'Explore Trícia Linewberg’s selected work in product thinking, interface design, and digital storytelling. A UX/UI and Product Design portfolio.',
  nav:['Projects','About','Contact'],skip:'Skip to content',menu:'Open menu',close:'Close menu',language:'Select language',
- presents:'THE LEGEND PRESENTS',welcome:'Welcome, welcome —',intro:"you've arrived at the portfolio of",subtitle:'A grand display of product thinking, interface design, and digital storytelling.',role:'UX/UI & Product Designer',ticket:'ADMIT ONE — explore selected works',ticketDetail:'One admission. Many possibilities.',
+ welcome:'Welcome, welcome.',intro:"You've arrived at the portfolio of",subtitle:'A grand display of product thinking, interface design, and digital storytelling.',ticket:'ADMIT ONE — explore selected works',
  portrait:'Trícia Linewberg wearing a top hat in a theatrical portrait',missingPortrait:'Original portrait coming soon',missingCover:'Original cover coming soon',cover:'Project cover for',home:'Trícia Linewberg — home',
  act:'Act',works:'The main acts',worksIntro:'Selected works. Every challenge, a story to turn into an experience.',view:'View on Behance',newTab:'opens in a new tab',featured:'1st place · Hack4Freedom 2026',
  descriptions:["Bitcoin wallet · Hack4Freedom 2026 winner.","Bitcoin education through the language of beauty.","Fictional website · Fan project.","UX/UI audit and experience redesign."],
@@ -39,7 +39,7 @@ export const translations:Record<Locale,Copy> = {
  es: {
  title:'Trícia Linewberg — Diseñadora UX/UI y de Producto | The Legend',description:'Descubre los proyectos de Trícia Linewberg: visión de producto, diseño de interfaces y narrativas digitales. Portafolio de diseño UX/UI y de producto.',
  nav:['Proyectos','Sobre mí','Contacto'],skip:'Saltar al contenido',menu:'Abrir menú',close:'Cerrar menú',language:'Seleccionar idioma',
- presents:'THE LEGEND PRESENTA',welcome:'Te doy la bienvenida —',intro:'has llegado al portafolio de',subtitle:'Un gran espectáculo de visión de producto, diseño de interfaces y narrativas digitales.',role:'Diseñadora UX/UI y de Producto',ticket:'ADMIT ONE — explorar los proyectos',ticketDetail:'Una entrada. Muchas posibilidades.',
+ welcome:'Bienvenido, bienvenida.',intro:'Has llegado al portafolio de',subtitle:'Una muestra de estrategia de producto, diseño de interfaces y narrativa digital.',ticket:'ADMIT ONE — explorar los proyectos',
  portrait:'Trícia Linewberg con sombrero de copa en un retrato teatral',missingPortrait:'Retrato original próximamente',missingCover:'Portada original próximamente',cover:'Portada del proyecto',home:'Trícia Linewberg — inicio',
  act:'Acto',works:'Los grandes actos',worksIntro:'Proyectos seleccionados. Cada desafío, una historia que transformar en experiencia.',view:'Ver en Behance',newTab:'se abre en una pestaña nueva',featured:'1.er puesto · Hack4Freedom 2026',
  descriptions:["Billetera Bitcoin · Ganadora del Hack4Freedom 2026.","Educación Bitcoin a través de la belleza.","Sitio de ficción · Proyecto de fan.","Auditoría UX/UI y rediseño de experiencia."],

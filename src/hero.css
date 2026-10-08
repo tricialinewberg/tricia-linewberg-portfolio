@@ -1,0 +1,65 @@
+/* The invitation uses its own type scale; the remaining editorial sections retain theirs. */
+.header, .hero { font-family: Inter, Arial, sans-serif; background: #f8f3ea; color: #30271f; }
+.header-inner, .hero-inner { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+.header-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; padding-block: 12px; border-bottom: 1px solid #dfd6c9; }
+.brand { margin-right: auto; border-radius: 4px; }
+.brand .asset { width: 108px; height: 72px; background: transparent; }
+.brand img { width: 100%; height: 100%; object-fit: contain; }
+.brand .asset-empty { padding: 0; font-weight: 700; font-size: 14px; }
+.languages { display: flex; align-items: center; gap: 2px; }
+.languages a { display: grid; place-items: center; width: 36px; min-height: 44px; font-size: 14px; font-weight: 600; border-radius: 6px; }
+.languages a[aria-current] { color: #963d20; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+.menu-toggle { display: flex; align-items: center; gap: 6px; padding: 0 4px; min-height: 44px; border: 0; border-radius: 4px; background: transparent; font-size: 14px; font-weight: 600; }
+.menu-toggle { order: 2; justify-content: center; min-width: 44px; }
+.menu-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.languages { order: 1; }
+.navigation { display: none; order: 3; width: 100%; padding-block: 8px; }
+.navigation.is-open { display: flex; flex-direction: column; }
+.navigation a { display: flex; align-items: center; min-height: 48px; padding: 10px 12px; font-size: 16px; font-weight: 500; border-radius: 6px; }
+.header a:hover, .menu-toggle:hover { color: #963d20; }
+.navigation a:hover, .languages a:hover { background: #eee5d8; }
+.hero-inner { display: grid; gap: 40px; padding-block: 40px 56px; }
+.hero h1 { font-family: inherit; letter-spacing: -.045em; }
+.hero .welcome { display: block; max-width: 12ch; font-size: clamp(2.1rem, 6vw, 3.5rem); font-weight: 750; line-height: 1.12; text-wrap: balance; }
+.hero .intro { display: block; margin-top: 26px; font-size: clamp(1rem, 2.1vw, 1.25rem); font-weight: 500; line-height: 1.5; letter-spacing: -.02em; }
+.hero .designer-name { display: block; margin-top: 5px; font-size: clamp(2.55rem, 7.3vw, 4.5rem); font-weight: 800; line-height: 1.06; letter-spacing: -.055em; }
+.hero-subtitle { max-width: 470px; margin-top: 24px; font-size: 17px; font-weight: 400; line-height: 1.65; color: #66584d; }
+.ticket { position: relative; display: inline-flex; align-items: center; min-height: 58px; margin-top: 28px; padding-left: 28px; border-radius: 8px; background: #a54627; color: #fffaf3; font-size: 16px; font-weight: 700; line-height: 1; box-shadow: 0 4px 0 #83351c; transition: background .18s, transform .18s, box-shadow .18s; }
+.ticket::before, .ticket::after { content: ''; position: absolute; width: 10px; height: 10px; border-radius: 50%; background: #f8f3ea; left: -5px; top: calc(50% - 5px); }
+.ticket::after { left: auto; right: -5px; }
+.ticket-arrow { display: grid; place-items: center; align-self: stretch; margin-left: 28px; width: 54px; border-left: 1px dashed #d89576; font-size: 23px; font-weight: 400; }
+.ticket:hover { background: #903b20; transform: translateY(-2px); box-shadow: 0 6px 0 #83351c; }
+.ticket:active { transform: translateY(2px); box-shadow: 0 2px 0 #83351c; }
+.header a:focus-visible, .header button:focus-visible, .ticket:focus-visible { outline: 3px solid #963d20; outline-offset: 5px; }
+.portrait { width: min(100%, 350px); justify-self: center; align-self: center; }
+.portrait .asset { width: 100%; aspect-ratio: 3375 / 4219; border-radius: 32px 32px 100px 32px; background: transparent; }
+.portrait img { width: 100%; height: 100%; object-fit: contain; }
+@media (max-width: 374px) {
+ .header-inner { gap: 0 6px; }
+ .brand .asset { width: 88px; height: 66px; }
+ .languages a { width: 30px; }
+ .menu-toggle { font-size: 12px; }
+}
+@media (min-width: 600px) {
+ .menu-label { position: static; width: auto; height: auto; clip-path: none; }
+ .header-inner, .hero-inner { width: min(1180px, calc(100% - 72px)); }
+ .brand .asset { width: 124px; height: 82px; }
+ .hero-inner { padding-block: 56px 64px; }
+ .hero-subtitle { font-size: 18px; }
+ .hero .designer-name { max-width: 10ch; }
+}
+@media (min-width: 850px) {
+ .header-inner { flex-wrap: nowrap; gap: 32px; }
+ .menu-toggle { display: none; }
+ .navigation, .navigation.is-open { display: flex; flex-direction: row; width: auto; order: 0; gap: 14px; padding: 0; }
+ .languages { border-left: 1px solid #dfd6c9; padding-left: 22px; }
+ .languages a { width: 40px; font-size: 15px; }
+ .hero-inner { grid-template-columns: minmax(0, 1.2fr) minmax(0, .85fr); align-items: center; gap: clamp(40px, 6vw, 90px); padding-block: 60px 76px; }
+ .hero .welcome { font-size: clamp(2.75rem, 4.3vw, 3.5rem); }
+ .hero .designer-name { font-size: clamp(3.5rem, 5.5vw, 4.5rem); }
+ .portrait { width: 100%; max-width: 430px; justify-self: end; }
+ .portrait .asset { border-radius: 40px 40px 120px 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .ticket:hover, .ticket:active { transform: none; }
+}

@@ -1,5 +1,6 @@
 import {test,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import {translations, type Locale} from '../src/locales';
 const base=process.env.VITE_BASE_PATH || '/';
 const route=(path:string)=>base+path.replace(/^\/+/, '');
 for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,1440]){
@@ -12,6 +13,23 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,144
   for(const image of await page.locator('.brand img, .portrait img').all()){
    await expect.poll(()=>image.evaluate(img=>(img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
   }
+  const copy=translations[locale as Locale];
+  await expect(page.locator('.welcome')).toHaveText(copy.welcome);
+  await expect(page.locator('.intro')).toHaveText(copy.intro);
+  await expect(page.locator('.designer-name')).toHaveText('Trícia Linewberg.');
+  await expect(page.locator('.hero-subtitle')).toHaveText(copy.subtitle);
+  await expect(page.locator('.hero')).not.toContainText('THE LEGEND');
+  await expect(page.locator('.ticket')).toHaveAccessibleName(/ADMIT ONE/);
+  await expect(page.locator('.hero')).toHaveCSS('background-color','rgb(248, 243, 234)');
+  await expect(page.locator('.designer-name')).toHaveCSS('font-weight','800');
+  await expect(page.locator('.hero')).toHaveCSS('font-family',/Inter/);
+  const portrait=(await page.locator('.portrait').boundingBox())!;
+  const headline=(await page.locator('.hero-copy').boundingBox())!;
+  if(width>=850)expect(portrait.x).toBeGreaterThan(headline.x+headline.width);
+  else expect(portrait.y).toBeGreaterThan(headline.y+headline.height);
+  expect(Math.abs(portrait.width/portrait.height-3375/4219)).toBeLessThan(.01);
+  await page.evaluate(()=>document.fonts.ready);
+  await page.screenshot({path:`work/test-results/hero-${locale}-${width}.png`,fullPage:false});
   await expect(page.locator('.project-link')).toHaveCount(4);
   await expect(page.locator('.project h3')).toHaveText(['SATRA Wallet','Bitcoin Beauty School','Assistant to the Villain','Avec — Redesign']);
   await expect(page.locator('#projects')).not.toContainText('Lumier');

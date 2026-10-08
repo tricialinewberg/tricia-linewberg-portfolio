@@ -4,9 +4,15 @@ import {projects} from './projects';
 export default function App({locale}:{locale:Locale}) {
  const t=translations[locale];
  return <><a className="skip" href="#main">{t.skip}</a><Header locale={locale} t={t}/><main id="main">
- <section className="hero section" aria-labelledby="hero-title">
-  <div className="hero-copy"><p className="eyebrow">{t.presents}</p><h1 id="hero-title"><span className="welcome">{t.welcome}</span><span className="intro">{t.intro}</span><em>Trícia Linewberg.</em></h1><p className="hero-subtitle">{t.subtitle}</p><a className="ticket" href="#projects" aria-label={t.ticket}><span className="ticket-no" aria-hidden="true">Nº 001</span><span>ADMIT ONE</span><span className="ticket-arrow" aria-hidden="true">↗</span></a><p className="ticket-caption">{t.ticketDetail}</p></div>
-  <figure className="portrait"><div className="portrait-frame"><Asset src="/images/%232a1a30%20(8).png" alt={t.portrait} fallback={t.missingPortrait} priority/></div><figcaption><span className="small-flourish" aria-hidden="true">✧</span>{t.role}<span className="small-flourish" aria-hidden="true">✧</span></figcaption></figure>
+ <section className="hero" aria-labelledby="hero-title">
+  <div className="hero-inner">
+   <div className="hero-copy">
+    <h1 id="hero-title"><span className="welcome">{t.welcome}</span><span className="intro">{t.intro}</span><span className="designer-name">Trícia Linewberg.</span></h1>
+    <p className="hero-subtitle">{t.subtitle}</p>
+    <a className="ticket" href="#projects" aria-label={t.ticket}><span>ADMIT ONE</span><span className="ticket-arrow" aria-hidden="true">↓</span></a>
+   </div>
+   <figure className="portrait"><Asset src="/images/%232a1a30%20(8).png" alt={t.portrait} fallback={t.missingPortrait} priority/></figure>
+  </div>
  </section>
  <section className="works section" id="projects" aria-labelledby="works-title">
   <div className="section-heading"><p className="eyebrow">01 / {t.nav[0]}</p><h2 id="works-title">{t.works}</h2><p>{t.worksIntro}</p></div>
