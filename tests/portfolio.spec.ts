@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import {translations, type Locale} from '../src/locales';
 const base=process.env.VITE_BASE_PATH || '/';
 const route=(path:string)=>base+path.replace(/^\/+/, '');
-for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,1440]){
+for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,1339,1440,1920]){
  test(`${locale} at ${width}px`,async({page})=>{
   await page.setViewportSize({width,height:900});
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
@@ -24,6 +24,15 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,144
   await expect(page.locator('.hero')).not.toContainText('THE LEGEND');
   await expect(page.locator('.ticket')).toHaveAccessibleName(/ADMIT ONE/);
   await expect(page.locator('.hero')).toHaveCSS('background-color','rgb(248, 243, 234)');
+  await expect(page.locator('.hero')).toHaveCSS('background-image',/radial-gradient/);
+  await expect(page.locator('#projects')).toHaveCSS('border-top-width','0px');
+  if(width>=850){
+   const container=(await page.locator('.hero-inner').boundingBox())!;
+   const clientWidth=await page.evaluate(()=>document.documentElement.clientWidth);
+   expect(container.width).toBeCloseTo(Math.min(1360,clientWidth-80),0);
+   await expect(page.locator('.welcome')).toHaveCSS('font-size','20px');
+   expect((await page.locator('.ticket').boundingBox())!.height).toBeGreaterThanOrEqual(60);
+  }
   await expect(page.locator('.designer-name')).toHaveCSS('font-weight','800');
   await expect(page.locator('.hero')).toHaveCSS('font-family',/^system-ui, -apple-system/);
   const portrait=(await page.locator('.portrait').boundingBox())!;
