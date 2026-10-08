@@ -7,7 +7,8 @@ export default function App({locale}:{locale:Locale}) {
  <section className="hero" aria-labelledby="hero-title">
   <div className="hero-inner">
    <div className="hero-copy">
-    <h1 id="hero-title"><span className="welcome">{t.welcome}</span><span className="intro">{t.intro}</span><span className="designer-name">Trícia Linewberg.</span></h1>
+    <p className="welcome">{t.welcome}</p>
+    <h1 id="hero-title"><span className="intro">{t.intro}</span>{' '}<span className="designer-name">Trícia Linewberg.</span></h1>
     <p className="hero-subtitle">{t.subtitle}</p>
     <a className="ticket" href="#projects" aria-label={t.ticket}><span>ADMIT ONE</span><span className="ticket-arrow" aria-hidden="true">↓</span></a>
    </div>
