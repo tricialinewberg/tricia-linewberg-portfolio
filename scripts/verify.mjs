@@ -4,6 +4,9 @@ import {translations,locales} from '../.ssr/prerender.js';
 for(const locale of locales){
  assert.deepEqual(Object.keys(translations[locale]).sort(),Object.keys(translations.en).sort());
  const html=await readFile(`dist/${locale}/index.html`,'utf8');
+ const base=process.env.VITE_BASE_PATH || '/';
+ for(const match of html.matchAll(/(?:src|href)="(\/[^\"]+)"/g))assert.ok(match[1].startsWith(base),`Unprefixed URL: ${match[1]}`);
+ if(process.env.SITE_URL)assert.ok(html.includes(`rel="canonical" href="${process.env.SITE_URL.replace(/\/$/,'')}/${locale}/"`));
  assert.equal((html.match(/class="project-link"/g)||[]).length,4);
  assert.equal((html.match(/<h1 /g)||[]).length,1);
  for(const text of ['ADMIT ONE','mailto:triciaux@gmail.com','rel="noopener noreferrer"','name="description"'])assert.ok(html.includes(text));
