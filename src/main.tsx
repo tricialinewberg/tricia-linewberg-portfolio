@@ -1,0 +1,11 @@
+import {hydrateRoot,createRoot} from 'react-dom/client';
+import App from './App';
+import {locales,htmlLang,translations,type Locale} from './locales';
+import './styles.css';
+const segment=window.location.pathname.split('/')[1] as Locale;
+const locale=locales.includes(segment)?segment:'pt-br';
+document.documentElement.lang=htmlLang[locale];
+document.title=translations[locale].title;
+if(!locales.includes(segment))window.history.replaceState(null,'',`/pt-br/${window.location.search}${window.location.hash}`);
+const root=document.getElementById('root')!;
+if(root.querySelector('main'))hydrateRoot(root,<App locale={locale}/>);else createRoot(root).render(<App locale={locale}/>);
