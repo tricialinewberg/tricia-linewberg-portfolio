@@ -10,7 +10,7 @@ export default function App({locale}:{locale:Locale}) {
     <p className="welcome">{t.welcome}</p>
     <h1 id="hero-title"><span className="intro">{t.intro}</span>{' '}<span className="designer-name">Trícia Linewberg.</span></h1>
     <p className="hero-subtitle">{t.subtitle}</p>
-    <a className="ticket" href="#projects" aria-label={t.ticket}><span className="ticket-label">ADMIT ONE</span><span className="ticket-arrow" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 4v20M7 17l7 7 7-7"/></svg></span></a>
+    <a className="ticket" href="#projects" aria-label={t.ticket}><span className="ticket-label">ADMIT ONE</span></a>
    </div>
    <figure className="portrait"><Asset src="/images/%232a1a30%20(8).png" alt={t.portrait} fallback={t.missingPortrait} priority/></figure>
   </div>

@@ -46,22 +46,24 @@
 .hero .intro { display: block; max-width: 18ch; text-wrap: balance; }
 .hero .designer-name { display: block; margin-top: 6px; font-size: 1.07em; font-weight: 800; line-height: 1.12; text-wrap: balance; }
 .hero-subtitle { max-width: 510px; margin-top: 24px; font-size: 18px; font-weight: 400; line-height: 1.6; color: #615767; }
-/* Separate masked layers keep the ticket notches truly transparent over the hero gradient.
-   The link itself stays unmasked, preserving its full keyboard focus outline. */
+/* Gold admission ticket: unmasked link preserves a complete focus outline.
+   The darkest gold is reserved for the edge, keeping ink readable across the face. */
 .ticket {
+  --ticket-face: linear-gradient(135deg, #f7e3a2 0%, #e3c36f 38%, #cfa54e 68%, #bd923e 100%);
   position: relative;
   isolation: isolate;
   display: inline-flex;
   align-items: stretch;
-  width: min(100%, 276px);
+  width: min(100%, 286px);
   min-height: 62px;
   margin-top: 30px;
-  border-radius: 11px;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
+  border-radius: 4px;
+  color: #2c2430;
+  font-size: 17px;
+  font-weight: 750;
+  letter-spacing: .09em;
   line-height: 1;
-  filter: drop-shadow(0 5px 8px #343f931f);
+  filter: drop-shadow(0 4px 6px #72501724);
   transition: transform .18s, filter .18s;
 }
 .ticket::before, .ticket::after {
@@ -73,26 +75,28 @@
 }
 .ticket::before {
   inset: 0;
-  background: var(--ticket-gold);
-  mask-image: radial-gradient(circle at left center, transparent 8px, #000 8.7px), radial-gradient(circle at right center, transparent 8px, #000 8.7px);
+  background: linear-gradient(135deg, #f7e3a2, #a97825 60%, #d4af63);
+  mask-image: radial-gradient(circle at left center, transparent 11px, #000 11.6px), radial-gradient(circle at right center, transparent 11px, #000 11.6px);
   mask-composite: intersect;
 }
 .ticket::after {
-  inset: 2px;
-  border-radius: 9px;
-  background: var(--tella-action);
-  mask-image: radial-gradient(circle at -2px center, transparent 10px, #000 10.7px), radial-gradient(circle at calc(100% + 2px) center, transparent 10px, #000 10.7px);
+  inset: 1px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #ffffff26, #ffffff00 45%), var(--ticket-face);
+  box-shadow: inset 0 1px 0 #fff5, inset 0 -1px 0 #78561f33;
+  mask-image: radial-gradient(circle at -1px center, transparent 12px, #000 12.6px), radial-gradient(circle at calc(100% + 1px) center, transparent 12px, #000 12.6px);
   mask-composite: intersect;
-  transition: background .18s;
 }
-.ticket-label { display: grid; flex: 1; place-items: center; padding: 18px 26px; }
-.ticket-arrow { display: grid; place-items: center; width: 64px; flex-shrink: 0; margin-block: 10px; border-left: 1px dashed #f6d98b99; color: #f6d98b; }
-.ticket-arrow svg { width: 26px; height: 26px; transition: transform .18s; }
-.ticket:hover { transform: translateY(-2px); filter: drop-shadow(0 8px 12px #343f9330); }
-.ticket:hover::after { background: var(--tella-hover); }
-.ticket:hover .ticket-arrow svg { transform: translateY(2px); }
-.ticket:active { transform: translateY(1px); filter: drop-shadow(0 2px 4px #343f931a); }
-.header a:focus-visible, .header button:focus-visible, .ticket:focus-visible { outline: 3px solid var(--tella-hover); outline-offset: 5px; }
+.ticket-label { position: relative; display: grid; flex: 1; place-items: center; padding: 20px 38px; text-shadow: 0 1px 0 #fff4; }
+/* Paired fine perforations suggest a ticket without an empty icon compartment. */
+.ticket-label::before, .ticket-label::after { content: ''; position: absolute; top: 12px; bottom: 12px; width: 1px; background: repeating-linear-gradient(to bottom, #654a242e 0 2px, transparent 2px 5px); pointer-events: none; }
+.ticket-label::before { left: 27px; }
+.ticket-label::after { right: 27px; }
+.ticket:hover { transform: translateY(-2px); filter: drop-shadow(0 7px 9px #72501730); }
+.ticket:hover::after { background: linear-gradient(180deg, #ffffff40, #ffffff08 55%), var(--ticket-face); }
+.ticket:active { transform: translateY(1px); filter: drop-shadow(0 1px 3px #72501724); }
+.header a:focus-visible, .header button:focus-visible { outline: 3px solid var(--tella-hover); outline-offset: 5px; }
+.ticket:focus-visible { outline: 3px solid #2c2430; outline-offset: 5px; }
 .portrait { width: min(100%, 330px); justify-self: center; align-self: center; }
 .portrait .asset { width: 100%; aspect-ratio: 3375 / 4219; border-radius: 28px 28px 88px 28px; background: transparent; }
 .portrait img { width: 100%; height: 100%; object-fit: contain; }
@@ -121,9 +125,9 @@
   .hero .welcome { font-size: 20px; margin-bottom: 22px; }
   .portrait { width: 100%; max-width: 500px; justify-self: end; }
   .portrait .asset { border-radius: 32px 32px 100px 32px; }
-  .ticket { width: 300px; min-height: 66px; margin-top: 32px; }
-  .ticket-arrow { width: 72px; }
+  .ticket { width: 312px; min-height: 66px; margin-top: 32px; }
+
 }
 @media (prefers-reduced-motion: reduce) {
-  .ticket:hover, .ticket:active, .ticket:hover .ticket-arrow svg { transform: none; }
+  .ticket:hover, .ticket:active { transform: none; }
 }
