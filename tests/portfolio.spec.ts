@@ -72,7 +72,7 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
   if(width<850){await page.locator('.menu-toggle').click();await expect(page.locator('#main-nav')).toBeVisible();await page.keyboard.press('Escape');await expect(page.locator('.menu-toggle')).toBeFocused();await expect(page.locator('#main-nav')).toBeHidden()}
   const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
   expect(result.violations).toEqual([]);expect(errors).toEqual([]);
-  if([320,375,1440].includes(width)){await page.locator('#projects').screenshot({path:`work/test-results/projects-${locale}-${width}.png`});}
+  if([320,375,1440].includes(width)){await page.locator('#works-title').click();await page.mouse.move(0,0);await page.locator('#projects').screenshot({path:`work/test-results/projects-${locale}-${width}.png`});}
  });
 }
 test('locale switching preserves section',async({page})=>{await page.goto(route('en/#about'));await page.getByRole('link',{name:'Español',exact:true}).click();await expect(page).toHaveURL(route('es/#about'));await expect(page.locator('html')).toHaveAttribute('lang','es');});
