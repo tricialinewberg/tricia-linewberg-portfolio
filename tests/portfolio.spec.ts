@@ -46,7 +46,10 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
   await expect(page.locator('.project-link')).toHaveCount(4);
   await expect(page.locator('.project h3')).toHaveText(['SATRA Wallet','Bitcoin Beauty School','Assistant to the Villain','Avec — Redesign']);
   await expect(page.locator('#projects')).not.toContainText('Lumier');
-  expect((await page.locator('#projects').boundingBox())!.width).toBeLessThanOrEqual(850);
+  await expect(page.locator('#works-title')).toHaveText(copy.works);
+  await expect(page.locator('.works .section-heading > p')).toHaveText(copy.worksIntro);
+  await expect(page.locator('.works .eyebrow')).toHaveCount(0);
+  await expect(page.locator('.works')).toHaveCSS('font-family', await page.locator('.hero').evaluate(el=>getComputedStyle(el).fontFamily));
   for(const row of await page.locator('.project-link').all()){
    await row.scrollIntoViewIfNeeded();
    await expect(row).toHaveAttribute('target','_blank');
@@ -57,9 +60,10 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
    await expect.poll(()=>image.evaluate(img=>(img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
    const cover=(await row.locator('.project-image').boundingBox())!;
    const copy=(await row.locator('.project-copy').boundingBox())!;
-   expect(Math.abs(cover.width-cover.height)).toBeLessThan(1);
-   expect(cover.width).toBeGreaterThanOrEqual(width<600?90:150);
-   expect(cover.width).toBeLessThanOrEqual(width<600?110:180);
+   expect(cover.width).toBeGreaterThan(cover.height);
+   expect(cover.width).toBeGreaterThanOrEqual(width<600?100:250);
+   await expect(image).toHaveCSS('object-fit','contain');
+   await expect(image).toHaveCSS('object-position','50% 50%');
    expect(copy.x).toBeGreaterThan(cover.x+cover.width);
   }
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);

@@ -15,14 +15,14 @@ export default function App({locale}:{locale:Locale}) {
    <figure className="portrait"><Asset src="/images/%232a1a30%20(8).png" alt={t.portrait} fallback={t.missingPortrait} priority/></figure>
   </div>
  </section>
- <section className="works section" id="projects" aria-labelledby="works-title">
-  <div className="section-heading"><p className="eyebrow">01 / {t.nav[0]}</p><h2 id="works-title">{t.works}</h2><p>{t.worksIntro}</p></div>
+ <section className="works" id="projects" aria-labelledby="works-title">
+  <div className="works-inner"><div className="section-heading"><h2 id="works-title">{t.works}</h2><p>{t.worksIntro}</p></div>
   <div className="project-list">{projects.map((p,i)=><article className={`project project--${p.id}`} key={p.id}>
    <a className="project-link" href={p.url} target="_blank" rel="noopener noreferrer" aria-labelledby={`${p.id}-title ${p.id}-link`}>
     <div className="project-image"><Asset src={p.image} alt="" fallback={t.missingCover}/></div>
     <div className="project-copy"><h3 id={`${p.id}-title`}>{p.name}</h3><p>{t.descriptions[i]}</p><span className="case-link" id={`${p.id}-link`}>{t.view}<span aria-hidden="true">↗</span><span className="sr-only"> — {t.newTab}</span></span></div>
    </a>
-  </article>)}</div>
+  </article>)}</div></div>
  </section>
  <section className="about" id="about" aria-labelledby="about-title"><div className="section about-grid"><div><p className="eyebrow">02 / {t.nav[1]}</p><h2 id="about-title">{t.about}</h2><p className="about-lead">{t.aboutLead}</p><span className="ornament" aria-hidden="true">❧</span></div><div className="biography"><p>{t.bio}</p><p>{t.study}</p><h3>{t.skillsTitle}</h3><ul className="skills">{t.skills.map(s=><li key={s}>{s}</li>)}</ul></div></div></section>
  <section className="recognition section" aria-labelledby="awards-title"><p className="eyebrow">03 / {t.recognition}</p><h2 id="awards-title">{t.recognition}</h2><div className="awards">{t.awards.map((a,i)=><div className="award" key={i}><span className="award-index" aria-hidden="true">{i===0?'I':'II'}</span><div><h3>{a}</h3><p>{t.awardsDetail[i]}</p></div></div>)}</div></section>
