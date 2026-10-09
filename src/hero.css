@@ -36,9 +36,8 @@
   background-color: var(--invitation-cream);
   background-image:
     linear-gradient(to bottom, #f8f3ea, #f8f3ea00 140px),
-    radial-gradient(ellipse at 58% 18%, #fffdf4e6, transparent 58%),
-    radial-gradient(ellipse at 100% 58%, #ddba7336, transparent 68%),
-    linear-gradient(115deg, #f8f3ea 0%, #fbf4e5 54%, #eee0c1 100%);
+    radial-gradient(ellipse at 72% 38%, #eedaa830 0%, #eedaa812 42%, transparent 76%),
+    linear-gradient(120deg, #f8f3ea 0%, #fcf7ee 44%, #f3e7cc 100%);
 }
 .hero-inner { display: grid; gap: 40px; padding-block: 40px 56px; }
 .hero-copy { min-width: 0; }
@@ -50,7 +49,7 @@
 /* Gold admission ticket: unmasked link preserves a complete focus outline.
    The darkest gold is reserved for the edge, keeping ink readable across the face. */
 .ticket {
-  --ticket-face: linear-gradient(135deg, #f7e3a2 0%, #e3c36f 38%, #cfa54e 68%, #bd923e 100%);
+  --ticket-face: linear-gradient(115deg, #e7c872 0%, #f8e7b5 32%, #edcf83 57%, #d1a94c 100%);
   position: relative;
   isolation: isolate;
   display: inline-flex;
@@ -59,12 +58,12 @@
   min-height: 66px;
   margin-top: 30px;
   border-radius: 4px;
-  color: #2c2430;
+  color: #352617;
   font-size: 18px;
   font-weight: 750;
   letter-spacing: .09em;
   line-height: 1;
-  filter: drop-shadow(0 4px 6px #72501724);
+  filter: drop-shadow(0 2px 2px #72501714) drop-shadow(0 7px 12px #72501724);
   transition: transform .18s, filter .18s;
 }
 .ticket::before, .ticket::after {
@@ -76,28 +75,28 @@
 }
 .ticket::before {
   inset: 0;
-  background: linear-gradient(135deg, #f7e3a2, #a97825 60%, #d4af63);
+  background: linear-gradient(135deg, #e9ce87 0%, #b8842f 48%, #9c6e1e 100%);
   mask-image: radial-gradient(circle at left center, transparent 11px, #000 11.6px), radial-gradient(circle at right center, transparent 11px, #000 11.6px);
   mask-composite: intersect;
 }
 .ticket::after {
   inset: 1px;
   border-radius: 3px;
-  background: linear-gradient(180deg, #ffffff26, #ffffff00 45%), var(--ticket-face);
-  box-shadow: inset 0 1px 0 #fff5, inset 0 -1px 0 #78561f33;
+  background: linear-gradient(180deg, #fff9e838, #fff9e800 48%), var(--ticket-face);
+  box-shadow: inset 0 1px 0 #fff8deaa, inset 0 -2px 3px #9c6e1e1a;
   mask-image: radial-gradient(circle at -1px center, transparent 12px, #000 12.6px), radial-gradient(circle at calc(100% + 1px) center, transparent 12px, #000 12.6px);
   mask-composite: intersect;
 }
-.ticket-label { position: relative; display: grid; flex: 1; place-items: center; padding: 20px 38px; text-shadow: 0 1px 0 #fff4; }
+.ticket-label { position: relative; display: grid; flex: 1; place-items: center; padding: 20px 38px; text-shadow: 0 1px 0 #fff8de80; }
 /* Paired fine perforations suggest a ticket without an empty icon compartment. */
-.ticket-label::before, .ticket-label::after { content: ''; position: absolute; top: 12px; bottom: 12px; width: 1px; background: repeating-linear-gradient(to bottom, #654a242e 0 2px, transparent 2px 5px); pointer-events: none; }
+.ticket-label::before, .ticket-label::after { content: ''; position: absolute; top: 12px; bottom: 12px; width: 1px; background: repeating-linear-gradient(to bottom, #78551e38 0 2px, transparent 2px 5px); pointer-events: none; }
 .ticket-label::before { left: 27px; }
 .ticket-label::after { right: 27px; }
-.ticket:hover { transform: translateY(-2px); filter: drop-shadow(0 7px 9px #72501730); }
-.ticket:hover::after { background: linear-gradient(180deg, #ffffff40, #ffffff08 55%), var(--ticket-face); }
+.ticket:hover { transform: translateY(-2px); filter: drop-shadow(0 2px 2px #72501718) drop-shadow(0 10px 15px #7250172e); }
+.ticket:hover::after { background: linear-gradient(180deg, #fff9e854, #fff9e80c 55%), var(--ticket-face); }
 .ticket:active { transform: translateY(1px); filter: drop-shadow(0 1px 3px #72501724); }
 .header a:focus-visible, .header button:focus-visible { outline: 3px solid var(--tella-hover); outline-offset: 5px; }
-.ticket:focus-visible { outline: 3px solid #2c2430; outline-offset: 5px; }
+.ticket:focus-visible { outline: 3px solid #352617; outline-offset: 5px; }
 .portrait { width: min(100%, 380px); justify-self: center; align-self: center; }
 .portrait .asset { width: 100%; aspect-ratio: 3375 / 4219; border-radius: 32px 32px 100px 32px; background: transparent; box-shadow: 0 18px 45px -24px #55412766; }
 .portrait img { width: 100%; height: 100%; object-fit: contain; }
