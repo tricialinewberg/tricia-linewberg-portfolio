@@ -72,6 +72,12 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
   if(width<850){await page.locator('.menu-toggle').click();await expect(page.locator('#main-nav')).toBeVisible();await page.keyboard.press('Escape');await expect(page.locator('.menu-toggle')).toBeFocused();await expect(page.locator('#main-nav')).toBeHidden()}
   const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
   expect(result.violations).toEqual([]);expect(errors).toEqual([]);
+  await expect(page.locator('#about h2')).toHaveText(copy.about);
+  await expect(page.locator('.biography p')).toHaveText([copy.bio,copy.study]);
+  await expect(page.locator('.competencies li')).toHaveText(copy.skills);
+  await expect(page.locator('.about-award p')).toHaveText(copy.awardsDetail);
+  await expect(page.locator('.competencies a, .competencies button, .competencies [tabindex]')).toHaveCount(0);
+  if([320,375,1440].includes(width)){await page.locator('#about-title').click();await page.mouse.move(0,0);await page.locator('#about').screenshot({path:`work/test-results/about-${locale}-${width}.png`});}
   if([320,375,1440].includes(width)){await page.locator('#works-title').click();await page.mouse.move(0,0);await page.locator('#projects').screenshot({path:`work/test-results/projects-${locale}-${width}.png`});}
  });
 }

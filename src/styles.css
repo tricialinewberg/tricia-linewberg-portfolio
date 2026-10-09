@@ -41,3 +41,42 @@
  .project-link { grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); gap: clamp(48px, 5vw, 80px); padding-block: 40px; }
  .project-image { aspect-ratio: 16 / 10; padding: 12px; }
 }
+
+/* Unified About and achievements, scoped to preserve the approved sections. */
+.about {
+ font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans SC', 'Noto Sans TC', sans-serif;
+ -webkit-font-smoothing: antialiased;
+ color: #2c2430;
+ border: 0;
+ background: radial-gradient(ellipse at 85% 0%, #eedaa826, transparent 65%), linear-gradient(120deg, #f8f3ea, #fcf7ee 44%, #f3e7cc);
+ padding-block: 48px 56px;
+}
+.about-inner { width: min(1680px, calc(100% - 48px)); margin-inline: auto; }
+.about-intro { display: grid; gap: 28px; }
+.about h2 { font-family: inherit; font-size: clamp(2.25rem, 4.5vw, 4rem); font-weight: 800; line-height: 1.12; margin: 0 0 16px; }
+.about .about-lead { font-family: inherit; font-style: normal; max-width: 560px; font-size: clamp(1.1875rem, 1.7vw, 1.375rem); line-height: 1.6; color: #615767; }
+.about .biography p { font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.7; color: #615767; margin: 0 0 18px; }
+.about .biography p:last-child { margin-bottom: 0; }
+.competencies { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; list-style: none; padding: 0; margin: 36px 0 0; }
+.competencies li { display: flex; align-items: center; min-height: 112px; padding: 18px 14px; border: 1px solid #b8842f45; border-radius: 10px; background: #fffaf180; font-size: clamp(1rem, 1.5vw, 1.25rem); font-weight: 650; line-height: 1.45; overflow-wrap: break-word; transition: background .2s, border-color .2s, box-shadow .2s; }
+@media (hover: hover) {
+ .competencies li:hover { background: linear-gradient(120deg, #f8e7b5a6, #edcf8359); border-color: #b8842f99; box-shadow: 0 6px 18px #59411d12; }
+}
+.about-achievements { margin-top: 40px; }
+.about-achievements h3 { font-family: inherit; font-size: clamp(1.5rem, 2.5vw, 2.25rem); font-weight: 750; line-height: 1.25; letter-spacing: -.02em; }
+.about-awards { display: grid; gap: 16px; margin-top: 24px; }
+.about-award { padding: 24px; border: 1px solid #b8842f66; border-radius: 10px; background: linear-gradient(120deg, #f8e7b58c, #edcf8333); }
+.about-award h4 { margin: 0 0 10px; color: #67471f; font-size: clamp(1.5rem, 2vw, 2rem); line-height: 1.2; font-weight: 750; }
+.about-award p { font-size: clamp(1rem, 1.4vw, 1.1875rem); line-height: 1.55; color: #615767; }
+@media (min-width: 600px) {
+ .about { padding-block: 64px 72px; }
+ .about-inner { width: min(1680px, calc(100% - 64px)); }
+ .competencies { gap: 20px; margin-top: 40px; }
+ .competencies li { padding: 24px; }
+ .about-awards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+}
+@media (min-width: 1000px) {
+ .about-intro { grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); gap: clamp(48px, 5vw, 80px); }
+ .competencies { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+ .about-achievements { margin-top: 48px; }
+}
