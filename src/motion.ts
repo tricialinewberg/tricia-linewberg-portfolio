@@ -1,10 +1,12 @@
 import {useEffect} from 'react';
+import {setupTouchFeedback} from './touch-motion';
 
 /** All motion is enhancement: static markup is visible before setup and after cleanup. */
 export function useTheatricalMotion() {
  useEffect(()=>{
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const fine=matchMedia('(hover: hover) and (pointer: fine)');
+  const disposeTouch=setupTouchFeedback(reduced);
   let dispose=()=>{};
   const configure=()=>{
    dispose();
@@ -127,6 +129,6 @@ export function useTheatricalMotion() {
    dispose=()=>cleanups.forEach(fn=>fn());
   };
   configure();reduced.addEventListener('change',configure);fine.addEventListener('change',configure);
-  return ()=>{dispose();reduced.removeEventListener('change',configure);fine.removeEventListener('change',configure);};
+  return ()=>{disposeTouch();dispose();reduced.removeEventListener('change',configure);fine.removeEventListener('change',configure);};
  },[]);
 }

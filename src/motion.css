@@ -102,3 +102,28 @@
  .wand-dust { display: none; }
  .ticket:hover,.ticket:active,.contact .contact-links a:hover svg { transform: none; }
 }
+
+/* Completed touch taps: independent of hover, including hybrid touchscreens. */
+.touch-magic { position: fixed; inset: 0; z-index: 101; pointer-events: none; overflow: hidden; contain: strict; }
+.touch-magic * { pointer-events: none; }
+.touch-magic i { position: absolute; opacity: 0; display: block; background: #b8842f; }
+.touch-magic .touch-star, .touch-magic .touch-spark { width: 13px; height: 13px; background: linear-gradient(120deg,#9c6e1e,#f8e7b5 48%,#b8842f); clip-path: polygon(50% 0,62% 37%,100% 50%,62% 63%,50% 100%,38% 63%,0 50%,38% 37%); }
+.touch-magic .touch-star { width: 27px; height: 27px; }
+.touch-magic .touch-point { width: 5px; height: 5px; border-radius: 50%; box-shadow: 0 0 5px #d1a94c99; }
+.competencies li.touch-lit { background: linear-gradient(115deg,#f8e7b5,#e7c872b3); border-color: #a97825; box-shadow: inset 0 1px 0 #fff8de,0 5px 16px #59411d18; }
+.competencies li.touch-lit::after { opacity: 1; background: linear-gradient(110deg,transparent 20%,#fff8decc 48%,transparent 75%); }
+.about-award.touch-lit { background: linear-gradient(115deg,#f8e7b5,#efd58c 60%,#e7c872); border-color: #a97825; box-shadow: inset 0 1px 0 #fff8de,0 8px 24px #59411d20; }
+.project-link.touch-lit .project-image { border-color: #a97825; box-shadow: inset 0 0 0 2px #d1a94c,0 5px 16px #59411d18; }
+.contact .contact-links a.touch-lit { color: #81571d; text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+.hero .ticket.touch-lit::after { box-shadow: inset 0 1px 0 #fff8de,inset 0 0 22px #fff8dec0; }
+@media (prefers-reduced-motion:no-preference) {
+ @keyframes touch-reflection { 0% { background-position: 150% 0; } 100% { background-position: -50% 0; } }
+ .competencies li.touch-lit::after { background-size: 250% 100%; background-repeat: no-repeat; animation: touch-reflection 800ms ease-out; }
+ .about-award.touch-lit::after { animation: award-reflection 800ms ease-out; }
+ .hero .ticket.touch-lit::after { animation: foil-sweep 700ms ease-out both; }
+}
+@media (prefers-reduced-motion:reduce) {
+ .touch-magic { display: none; }
+ .touch-lit,.touch-lit *,.touch-lit::after { animation: none !important; transition: none !important; }
+ .competencies li.touch-lit::after { opacity: 0; }
+}
