@@ -52,22 +52,28 @@
  padding-block: 48px 56px;
 }
 .about-inner { width: min(1680px, calc(100% - 48px)); margin-inline: auto; }
-.about-intro { display: grid; gap: 28px; }
+.about-intro { display: block; }
 .about h2 { font-family: inherit; font-size: clamp(2.25rem, 4.5vw, 4rem); font-weight: 800; line-height: 1.12; margin: 0 0 16px; }
-.about .about-lead { font-family: inherit; font-style: normal; max-width: 560px; font-size: clamp(1.1875rem, 1.7vw, 1.375rem); line-height: 1.6; color: #615767; }
-.about .biography p { font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.7; color: #615767; margin: 0 0 18px; }
-.about .biography p:last-child { margin-bottom: 0; }
-.competencies { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; list-style: none; padding: 0; margin: 36px 0 0; }
-.competencies li { display: flex; align-items: center; min-height: 112px; padding: 18px 14px; border: 1px solid #b8842f45; border-radius: 10px; background: #fffaf180; font-size: clamp(1rem, 1.5vw, 1.25rem); font-weight: 650; line-height: 1.45; overflow-wrap: break-word; transition: background .2s, border-color .2s, box-shadow .2s; }
+.about .about-lead { font-family: inherit; font-style: normal; max-width: none; font-size: clamp(1.1875rem, 1.7vw, 1.375rem); line-height: 1.6; color: #615767; }
+.competencies { display: grid; grid-template-columns: minmax(0, 1fr); grid-auto-rows: 1fr; gap: 12px; list-style: none; padding: 0; margin: 36px 0 0; }
+.competencies li { display: flex; align-items: center; min-height: 100px; padding: 18px 14px; border: 1px solid #b8842f45; border-radius: 10px; background: #fffaf180; font-size: clamp(1rem, 1.5vw, 1.25rem); font-weight: 650; line-height: 1.45; overflow-wrap: break-word; transition: background .2s, border-color .2s, box-shadow .2s; }
 @media (hover: hover) {
  .competencies li:hover { background: linear-gradient(120deg, #f8e7b5a6, #edcf8359); border-color: #b8842f99; box-shadow: 0 6px 18px #59411d12; }
 }
 .about-achievements { margin-top: 40px; }
 .about-achievements h3 { font-family: inherit; font-size: clamp(1.5rem, 2.5vw, 2.25rem); font-weight: 750; line-height: 1.25; letter-spacing: -.02em; }
 .about-awards { display: grid; gap: 16px; margin-top: 24px; }
-.about-award { padding: 24px; border: 1px solid #b8842f66; border-radius: 10px; background: linear-gradient(120deg, #f8e7b58c, #edcf8333); }
-.about-award h4 { margin: 0 0 10px; color: #67471f; font-size: clamp(1.5rem, 2vw, 2rem); line-height: 1.2; font-weight: 750; }
-.about-award p { font-size: clamp(1rem, 1.4vw, 1.1875rem); line-height: 1.55; color: #615767; }
+.about-award { position: relative; overflow: hidden; padding: clamp(24px, 3vw, 44px); border: 1px solid #b8842f70; border-radius: 12px; background: linear-gradient(115deg, #f8e7b5b3, #fff8e8 40%, #e7c87266); box-shadow: inset 0 1px 0 #fff8de, 0 8px 24px #59411d0d; transition: border-color .2s, box-shadow .2s; }
+.about-award::before { content: ''; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(115deg, #e7c872, #f8e7b5 32%, #d1a94c 80%, #b8842f); }
+.about-award .award-placement { margin: 0 0 22px; color: #352617; font-size: clamp(2.75rem, 4.5vw, 4.5rem); line-height: 1.08; font-weight: 800; letter-spacing: -.035em; }
+.about-award h4 { margin: 0 0 12px; color: #402d1a; font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 1.3; font-weight: 700; }
+.about-award .award-detail { font-size: clamp(1.0625rem, 1.4vw, 1.25rem); line-height: 1.55; color: #61503b; }
+@media (hover: hover) {
+ .about-award:hover { border-color: #b8842f; box-shadow: inset 0 1px 0 #fff8de, 0 10px 28px #59411d18; }
+}
+@media (min-width: 360px) {
+ .competencies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (min-width: 600px) {
  .about { padding-block: 64px 72px; }
  .about-inner { width: min(1680px, calc(100% - 64px)); }
@@ -75,8 +81,7 @@
  .competencies li { padding: 24px; }
  .about-awards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 }
-@media (min-width: 1000px) {
- .about-intro { grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); gap: clamp(48px, 5vw, 80px); }
+@media (min-width: 1200px) {
  .competencies { grid-template-columns: repeat(4, minmax(0, 1fr)); }
  .about-achievements { margin-top: 48px; }
 }

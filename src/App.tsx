@@ -26,9 +26,9 @@ export default function App({locale}:{locale:Locale}) {
  </section>
  <section className="about" id="about" aria-labelledby="about-title">
   <div className="about-inner">
-   <div className="about-intro"><div><h2 id="about-title">{t.about}</h2><p className="about-lead">{t.aboutLead}</p></div><div className="biography"><p>{t.bio}</p><p>{t.study}</p></div></div>
+   <div className="about-intro"><h2 id="about-title">{t.about}</h2><p className="about-lead">{t.aboutLead}</p></div>
    <ul className="competencies" aria-label={t.skillsTitle}>{t.skills.map(s=><li key={s}>{s}</li>)}</ul>
-   <section className="about-achievements" aria-labelledby="awards-title"><h3 id="awards-title">{t.recognition}</h3><div className="about-awards">{t.awards.map((a,i)=><div className="about-award" key={i}><h4>{a}</h4><p>{t.awardsDetail[i]}</p></div>)}</div></section>
+   <section className="about-achievements" aria-labelledby="awards-title"><h3 id="awards-title">{t.recognition}</h3><div className="about-awards">{t.awards.map((a,i)=><div className="about-award" key={i}><p className="award-placement">{a}</p><h4>{t.awardNames[i]}</h4><p className="award-detail">{t.awardsDetail[i]}</p></div>)}</div></section>
   </div>
  </section>
  <section className="contact section" id="contact" aria-labelledby="contact-title"><div className="contact-inner"><p className="eyebrow">{t.contactLead}</p><h2 id="contact-title">{t.contact}</h2><p>{t.contactBody}</p><div className="contact-links"><External href={`https://wa.me/5586995473936?text=${encodeURIComponent(t.message)}`} className="contact-primary">WhatsApp <span aria-hidden="true">↗</span><span className="sr-only"> — {t.newTab}</span></External><a href="mailto:triciaux@gmail.com">{t.email} <span aria-hidden="true">↗</span></a><External href="https://www.linkedin.com/in/tricia-linewberg/">LinkedIn <span aria-hidden="true">↗</span><span className="sr-only"> — {t.newTab}</span></External></div><a className="email-address" href="mailto:triciaux@gmail.com">triciaux@gmail.com</a></div></section>
