@@ -1,59 +1,135 @@
-# Trícia Linewberg — The Legend’s Portfolio
+# Trícia Linewberg - Portfolio
 
-Mobile-first React, TypeScript and Vite portfolio with authored CSS and three statically rendered language routes. No backend.
+**UX/UI & Product Designer | Interactive Portfolio**
 
-## GitHub Pages and Vercel
+A personal portfolio showcasing selected UX/UI and Product Design projects through a responsive, multilingual, and interactive web experience.
 
-The `Deploy portfolio to GitHub Pages` workflow builds, checks all three languages on mobile and desktop, and deploys `dist` using the official configure-pages, upload-pages-artifact and deploy-pages actions on every push to `main`. It can also be run manually. Repository Settings → Pages → Source must be **GitHub Actions**.
+Inspired by the theatrical atmosphere of *Caraval*, the visual concept combines editorial design, champagne-gold gradients, cinematic transitions, and custom magical interactions.
 
-Live URL: https://tricialinewberg.github.io/tricia-linewberg-portfolio/
+**[Explore the Portfolio ↗](https://tricia-linewberg-portfolio.vercel.app/)**
 
-The workflow sets `VITE_BASE_PATH=/tricia-linewberg-portfolio/` and `SITE_URL=https://tricialinewberg.github.io/tricia-linewberg-portfolio`. These apply to both the browser and prerender builds. Assets, language links, route detection and SEO use the same base. The static `pt-br/index.html`, `en/index.html` and `es/index.html` files support direct navigation and refresh on Pages; no catch-all rewrite is needed. The site root defaults to Portuguese. Original PNG filenames are preserved, with reserved URL characters encoded.
+Available in **Português (BR), English, and Español**.
 
-For **Vercel**, leave `VITE_BASE_PATH` unset (defaults to `/`), set `SITE_URL` to the Vercel site's origin, and use build command `npm run build` with output directory `dist`. The existing `vercel.json` root redirect remains in place. The regular verification workflow tests the root-path build independently of Pages.
+---
 
-## Local development and checks
+## About the Project
 
-Requires Node 22.12+ (developed with Node 24).
+This portfolio was designed and developed to present my work, creative approach, and experience in UX/UI and Product Design.
 
-```sh
-npm ci
-npm run dev
-npm run build
-npm test
-npm run preview
-# In a second terminal, with preview running on port 4173:
-npx playwright install chromium
-npx playwright test
-```
+Beyond displaying case studies, the website explores how visual storytelling, interaction design, and front-end development can work together to create a distinctive digital experience.
 
-The build typechecks, bundles, and generates complete HTML at `/pt-br/`, `/en/`, and `/es/`. `/` predictably defaults to Brazilian Portuguese. Language switching preserves the section. Use production preview for prerendered pages; development uses client rendering.
+The interface follows a mobile-first approach, with responsive layouts, accessible navigation, and interactions adapted to both desktop and touchscreen devices.
 
-Set `SITE_URL` to the complete site URL, including any repository base path, at build time to add canonical, OpenGraph URL, hreflang and x-default links. `vercel.json` supports the static language directories and root redirect; it does not deploy Vercel automatically.
+## Selected Projects
 
-## Maintenance
+**01 — SATRA Wallet**
 
-- `src/locales.ts`: typed translations, metadata, descriptions and accessible labels.
-- `src/projects.ts`: ordered project metadata and exact Behance links.
-- `src/components.tsx`: navigation and graceful asset handling.
-- `src/styles.css`: design tokens, responsive layouts, focus and reduced motion.
-- `scripts/prerender.mjs`: static language HTML and SEO.
-- `tests/portfolio.spec.ts`: all three locales at 320, 375, 768, 1024 and 1440 pixels, axe checks, keyboard navigation and language switching.
+A Bitcoin wallet experience developed for Hack4Freedom 2026, where the project received **1st place**.
 
-Cormorant Garamond and DM Sans use Google Fonts with font-display swap and local fallbacks. Image dimensions are reserved; the portrait is eager/high priority and project covers are lazy. No animation library, continuous motion, sounds or splash screen.
+[View case study on Behance](https://www.behance.net/gallery/254727621/SATRA-WALLET-(-1ST-PLACE-AT-HACK4FREEDOM-))
 
-## Missing original assets — all seven
+**02 — Bitcoin Beauty School**
 
-The source repository contained only the brief and README. Upload originals to these exact paths; references are already implemented:
+A project connecting Bitcoin education with the visual language of beauty.
 
-1. `public/images/profile/tricia-portrait.webp`
-2. `public/images/branding/tricia-logo.png`
-3. `public/images/projects/satra-wallet.webp`
-4. `public/images/projects/avec-redesign.webp`
-5. `public/images/projects/bitcoin-beauty-school.webp`
-6. `public/images/projects/assistant-to-the-villain.webp`
-7. `public/images/projects/lumier.webp`
+[View case study on Behance](https://www.behance.net/gallery/254405015/Bitcoin-Beauty-School)
 
-Until upload, image areas display localized empty-state labels and the navbar displays the designer’s name. No substitute artwork was generated. Review image crops, logo transparency and LCP after upload. Export guidance is in `public/images/README.md`. Favicon and OpenGraph image await approved branding assets. No CV or unverified Behance profile URL is included.
+**03 — Assistant to the Villain**
 
-The brief is the source for biography and recognition. No metrics, clients or employee history were invented.
+A fictional website exploring interface design and digital storytelling.
+
+[View project on Behance](https://www.behance.net/gallery/254726489/WebSite-(Fictional))
+
+**04 — AVEC — Redesign**
+
+A UX/UI redesign project focused on reviewing and improving an existing digital experience.
+
+[View case study on Behance](https://www.behance.net/gallery/254739999/AVEC-(REDESIGN))
+
+## Experience Highlights
+
+- Responsive, mobile-first interface design
+- Multilingual experience: PT-BR, EN, and ES
+- Custom CSS animations and cinematic scroll reveals
+- Golden admission-ticket interaction
+- Custom magic-wand cursor and particle effects
+- Touch-based animations adapted for mobile devices
+- Accessible keyboard navigation and reduced-motion support
+- Static prerendering and SEO metadata
+
+## Tech Stack
+
+| Category | Technologies |
+|---|---|
+| Front-end | React 19, TypeScript, HTML5 |
+| Build tool | Vite |
+| Styling | CSS3, responsive layouts, gradients |
+| Motion | CSS Animations, Web Animations API, Intersection Observer |
+| Testing | Playwright, axe-core |
+| Deployment | Vercel, GitHub Pages |
+
+The portfolio is a static front-end application and does not require a backend.
+
+## Run Locally
+
+**Requirements:** Node.js 22.12 or later and npm.
+
+Clone the repository:
+
+`git clone https://github.com/tricialinewberg/tricia-linewberg-portfolio.git`
+
+Enter the project directory:
+
+`cd tricia-linewberg-portfolio`
+
+Install dependencies:
+
+`npm ci`
+
+Start the development server:
+
+`npm run dev`
+
+Create a production build:
+
+`npm run build`
+
+Run the project verification script:
+
+`npm test`
+
+Preview the production build:
+
+`npm run preview`
+
+For browser-based tests, install Chromium with `npx playwright install chromium` and run `npx playwright test` while the preview server is running.
+
+## Deployment
+
+The portfolio is available through two platforms:
+
+**Primary website:** [Vercel](https://tricia-linewberg-portfolio.vercel.app/)
+
+**Alternative:** [GitHub Pages](https://tricialinewberg.github.io/tricia-linewberg-portfolio/pt-br/)
+
+The project uses statically generated routes for all three languages.
+
+## Design Concept
+
+The experience is inspired by theatrical storytelling: a visitor receives an invitation, discovers the projects, explores the designer's expertise, and reaches the contact section.
+
+Warm ivory tones, champagne-gold surfaces, animated reveals, and magical cursor interactions express this concept while keeping the interface readable and functional.
+
+The goal is to create a portfolio where **the interaction design is part of the work being presented**.
+
+## Contact
+
+**Trícia Linewberg**
+
+UX/UI & Product Designer
+
+[LinkedIn](https://www.linkedin.com/in/tricia-linewberg/) · [GitHub](https://github.com/tricialinewberg) · [Email](mailto:triciaux@gmail.com)
+
+---
+
+Designed and developed by **Trícia Linewberg**.
