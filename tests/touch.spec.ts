@@ -57,9 +57,10 @@ test('reduced motion touch preserves static gold feedback',async({browser})=>{
  await expect(card).toHaveCSS('opacity','1');await page.waitForTimeout(1050);await expect(card).not.toHaveClass(/touch-lit/);
  await context.close();
 });
-test('touch handlers accept hybrid pen input without mouse tap effects',async({page})=>{
+test('shared activation accepts hybrid pen and mouse input',async({page})=>{
  await page.goto(route);const card=page.locator('.competencies li').first();await card.scrollIntoViewIfNeeded();await page.waitForTimeout(1100);
- await card.click();await expect(card).not.toHaveClass(/touch-lit/);
+ await card.click();await expect(card).toHaveClass(/touch-lit/);
+ await page.waitForTimeout(1050);await expect(card).not.toHaveClass(/touch-lit/);
  await card.dispatchEvent('pointerdown',{pointerType:'pen',pointerId:3,isPrimary:true});
  await card.dispatchEvent('pointerup',{pointerType:'pen',pointerId:3});await expect(card).toHaveClass(/touch-lit/);
  await page.emulateMedia({reducedMotion:'reduce'});await expect(page.locator('.touch-magic')).toHaveCount(0);

@@ -1,0 +1,44 @@
+import {test,expect} from '@playwright/test';
+const route='http://127.0.0.1:4173'+(process.env.VITE_BASE_PATH||'/')+'en/';
+test('desktop clicks share the mobile burst without duplicating wand particles',async({page})=>{
+ await page.goto(route);
+ const card=page.locator('.competencies li').first();await card.scrollIntoViewIfNeeded();await page.waitForTimeout(1100);
+ await card.hover();await expect(card).toHaveClass(/pointer-lit/);
+ await expect(page.locator('.wand-cursor')).toHaveClass(/visible/);
+ await page.waitForTimeout(750);
+ const hover=await card.evaluate(el=>getComputedStyle(el).backgroundImage);
+ await page.mouse.down();await page.mouse.up();
+ await expect(card).toHaveClass(/touch-lit/);
+ expect(await card.evaluate(el=>getComputedStyle(el).backgroundImage)).not.toBe(hover);
+ await expect(page.locator('.touch-magic i')).toHaveCount(9);
+ expect(await page.locator('.touch-magic').evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(9);
+ expect(await card.evaluate(el=>getComputedStyle(el,'::after').animationName)).toBe('touch-reflection');
+ await page.waitForTimeout(1050);await expect(card).not.toHaveClass(/touch-lit/);
+ expect(await card.evaluate(el=>getComputedStyle(el).backgroundImage)).toBe(hover);
+ const award=page.locator('.about-award').first();await award.scrollIntoViewIfNeeded();await page.waitForTimeout(1300);await award.click();
+ await expect(award).toHaveClass(/touch-lit/);
+ expect(await award.evaluate(el=>getComputedStyle(el,'::after').animationName)).toBe('award-reflection');
+ const ticket=page.locator('.ticket');await ticket.scrollIntoViewIfNeeded();await ticket.hover();await page.waitForTimeout(800);
+ await page.mouse.down();await page.mouse.up();await expect(page).toHaveURL(/#projects$/);
+ expect(await page.locator('.touch-magic').evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(9);
+ expect(await page.locator('.wand-dust').evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(0);
+ await page.waitForTimeout(1100);await page.mouse.move(100,200);await page.mouse.move(140,220);
+ await expect(page.locator('.wand-cursor')).toHaveClass(/visible/);
+ expect(await page.locator('.wand-dust').evaluate(el=>el.getAnimations({subtree:true}).length)).toBeGreaterThan(0);
+});
+test('mouse dragging, secondary clicks and text selection do not activate magic',async({page})=>{
+ await page.goto(route);const card=page.locator('.competencies li').first();await card.scrollIntoViewIfNeeded();await page.waitForTimeout(1100);
+ await card.click({button:'right'});await expect(card).not.toHaveClass(/touch-lit/);await page.keyboard.press('Escape');
+ const box=(await card.boundingBox())!;await page.mouse.move(box.x+10,box.y+10);await page.mouse.down();await page.mouse.move(box.x+40,box.y+20);await page.mouse.up();
+ await expect(card).not.toHaveClass(/touch-lit/);
+ await card.evaluate(el=>{const range=document.createRange();range.selectNodeContents(el);window.getSelection()?.removeAllRanges();window.getSelection()?.addRange(range);});
+ await card.dispatchEvent('pointerdown',{pointerType:'mouse',pointerId:1,isPrimary:true,button:0});await card.dispatchEvent('pointerup',{pointerType:'mouse',pointerId:1});
+ await expect(card).not.toHaveClass(/touch-lit/);
+});
+test('reduced motion mouse clicks retain static feedback and keyboard navigation',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto(route);
+ const card=page.locator('.competencies li').first();await card.click();await expect(card).toHaveClass(/touch-lit/);
+ await expect(page.locator('.touch-magic')).toHaveCount(0);await expect(page.locator('.wand-cursor')).toHaveCount(0);
+ expect(await card.evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(0);
+ await page.locator('.ticket').focus();await page.keyboard.press('Enter');await expect(page).toHaveURL(/#projects$/);
+});

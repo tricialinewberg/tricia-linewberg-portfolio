@@ -1,4 +1,4 @@
-/** Tap enhancement only: never capture pointers, cancel native events or follow a drag. */
+/** Pointer activation enhancement: never capture pointers, cancel native events or follow a drag. */
 export function setupTouchFeedback(reduced:MediaQueryList) {
  const selector='.ticket, .competencies li, .about-award, .project-link, .contact-links a';
  let pending:{id:number;target:HTMLElement;x:number;y:number;time:number}|null=null;
@@ -33,7 +33,8 @@ export function setupTouchFeedback(reduced:MediaQueryList) {
  };
  const cancel=()=>{pending=null;};
  const down=(event:PointerEvent)=>{
-  if(event.pointerType!=='touch'&&event.pointerType!=='pen')return;
+  if(event.pointerType!=='touch'&&event.pointerType!=='pen'&&event.pointerType!=='mouse')return;
+  if(event.pointerType==='mouse'&&event.button!==0)return;
   if(!event.isPrimary){cancel();return;}
   const target=event.target instanceof Element?event.target.closest<HTMLElement>(selector):null;
   pending=target?{id:event.pointerId,target,x:event.clientX,y:event.clientY,time:performance.now()}:null;

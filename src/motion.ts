@@ -55,19 +55,19 @@ export function useTheatricalMotion() {
      }
      previous=null;bounds=null;
     };
-    const emit=(px:number,py:number,burst=false,index=0)=>{
+    const emit=(px:number,py:number)=>{
      const node=pool[next++%pool.length];
      animations.get(node)?.cancel();
      const phase=next*2.39996;
-     const dx=burst?Math.cos(index*Math.PI/4)*42:Math.cos(phase)*18;
-     const dy=burst?Math.sin(index*Math.PI/4)*36:12+Math.sin(phase)*16;
+     const dx=Math.cos(phase)*18;
+     const dy=12+Math.sin(phase)*16;
      node.style.left=px+'px';node.style.top=py+'px';
      const animation=node.animate([
       {opacity:0,transform:'translate(-50%, -50%) scale(.35) rotate(0deg)'},
       {opacity:1,offset:.12,transform:'translate(-50%, -50%) scale(1) rotate(15deg)'},
       {opacity:.85,offset:.42,transform:'translate(calc(-50% + '+dx*.3+'px), calc(-50% + '+dy*.3+'px)) scale(.9) rotate(30deg)'},
       {opacity:0,transform:'translate(calc(-50% + '+dx+'px), calc(-50% + '+dy+'px)) scale(.2) rotate(65deg)'}
-     ],{duration:burst?700:620,easing:'linear'});
+     ],{duration:620,easing:'linear'});
      animations.set(node,animation);
      animation.onfinish=()=>{if(animations.get(node)===animation)animations.delete(node);};
     };
@@ -104,22 +104,17 @@ export function useTheatricalMotion() {
      if(now-lastTime<38||Math.hypot(x-lastX,y-lastY)<5)return;
      lastTime=now;lastX=x;lastY=y;emit(x,y);
     };
-    const click=(event:MouseEvent)=>{
-     if(!event.detail||!(event.target instanceof Element)||!event.target.closest('.ticket'))return;
-     for(let i=0;i<8;i++)emit(event.clientX,event.clientY,true,i);
-    };
     const scroll=()=>{document.body.classList.remove('wand-ready');cursor.classList.remove('visible');active=null;resetSurface();};
     const key=(event:KeyboardEvent)=>{if(event.key==='Tab')hide();};
     const leave=(event:PointerEvent)=>{if(!event.relatedTarget)hide();};
     document.addEventListener('pointermove',move,{passive:true});
-    document.addEventListener('click',click,{passive:true});
     document.addEventListener('keydown',key);
     document.addEventListener('pointerout',leave);
     document.addEventListener('visibilitychange',hide);
     window.addEventListener('blur',hide);
     window.addEventListener('scroll',scroll,{passive:true});
     cleanups.push(()=>{
-     document.removeEventListener('pointermove',move);document.removeEventListener('click',click);
+     document.removeEventListener('pointermove',move);
      document.removeEventListener('keydown',key);document.removeEventListener('pointerout',leave);
      document.removeEventListener('visibilitychange',hide);window.removeEventListener('blur',hide);
      window.removeEventListener('scroll',scroll);
