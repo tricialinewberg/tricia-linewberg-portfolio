@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 
-/** Progressive enhancement: no content is hidden before observation or after cleanup. */
+/** All motion is enhancement: static markup is visible before setup and after cleanup. */
 export function useTheatricalMotion() {
  useEffect(()=>{
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
@@ -9,70 +9,123 @@ export function useTheatricalMotion() {
   const configure=()=>{
    dispose();
    const cleanups:Array<()=>void>=[];
-   if(!reduced.matches && 'IntersectionObserver' in window){
+   if(reduced.matches){dispose=()=>{};return;}
+   if('IntersectionObserver' in window){
     const observer=new IntersectionObserver(entries=>{
      for(const entry of entries){
       if(!entry.isIntersecting)continue;
       const element=entry.target as HTMLElement;
-      if(!element.dataset.revealed){
-       element.dataset.revealed='true';
-       element.classList.add('stage-reveal');
-      }
-      // The class is one-shot; no observer is needed during its CSS animation.
-      observer.unobserve(element);
+      if(element.dataset.revealed)continue;
+      element.dataset.revealed='true';
+      element.classList.add('is-revealed');
+      const complete=()=>observer.unobserve(element);
+      element.addEventListener('animationend',complete,{once:true});
+      cleanups.push(()=>element.removeEventListener('animationend',complete));
      }
-    },{threshold:.08});
-    document.querySelectorAll<HTMLElement>('.project, .about-award').forEach(el=>{
+    },{threshold:.12});
+    document.querySelectorAll<HTMLElement>('.project, .competencies, .about-award').forEach(el=>{
      if(!el.dataset.revealed)observer.observe(el);
     });
     cleanups.push(()=>observer.disconnect());
    }
-   if(fine.matches && !reduced.matches && typeof Element.prototype.animate==='function'){
+   if(fine.matches && typeof Element.prototype.animate==='function'){
     const layer=document.createElement('div');
-    layer.className='wand-dust';
-    layer.setAttribute('aria-hidden','true');
-    const pool=Array.from({length:12},(_,i)=>{
+    layer.className='wand-dust';layer.setAttribute('aria-hidden','true');
+    const pool=Array.from({length:24},(_,i)=>{
      const node=document.createElement('i');
-     node.className=i%3===0?'dust-star':'dust-point';
+     node.className=i%3===0?'dust-star':i%3===1?'dust-point':'dust-glow';
      layer.append(node);return node;
     });
+    const cursor=document.createElement('div');
+    cursor.className='wand-cursor';
+    const wand=document.createElement('img');
+    wand.src=new URL('./wand.svg',import.meta.url).href;
+    wand.alt='';wand.draggable=false;cursor.append(wand);layer.append(cursor);
     document.body.append(layer);
-    let next=0,lastTime=0,lastX=-100,lastY=-100;
     const animations=new Map<HTMLElement,Animation>();
-    const clear=()=>{animations.forEach(a=>a.cancel());animations.clear();};
-    const move=(event:PointerEvent)=>{
-     if(event.pointerType!=='mouse'||event.buttons||document.hidden)return;
-     const now=performance.now();
-     if(now-lastTime<70||Math.hypot(event.clientX-lastX,event.clientY-lastY)<8)return;
-     lastTime=now;lastX=event.clientX;lastY=event.clientY;
+    let next=0,lastTime=0,lastX=-100,lastY=-100,frame=0;
+    let x=0,y=0,active:HTMLElement|null=null,previous:HTMLElement|null=null;
+    let bounds:DOMRect|null=null,enabled=false;
+    const resetSurface=()=>{
+     if(previous){
+      for(const key of ['--light-x','--light-y','--tilt-x','--tilt-y'])previous.style.removeProperty(key);
+      previous.classList.remove('pointer-lit');
+     }
+     previous=null;bounds=null;
+    };
+    const emit=(px:number,py:number,burst=false,index=0)=>{
      const node=pool[next++%pool.length];
      animations.get(node)?.cancel();
-     const side=next%2===0?1:-1;
-     node.style.left=(event.clientX+side*5)+'px';
-     node.style.top=(event.clientY+7)+'px';
+     const phase=next*2.39996;
+     const dx=burst?Math.cos(index*Math.PI/4)*42:Math.cos(phase)*18;
+     const dy=burst?Math.sin(index*Math.PI/4)*36:12+Math.sin(phase)*16;
+     node.style.left=px+'px';node.style.top=py+'px';
      const animation=node.animate([
-      {opacity:0,transform:'translate(0, 0) scale(.6)'},
-      {opacity:.55,offset:.18,transform:'translate(0, 1px) scale(1)'},
-      {opacity:0,transform:'translate('+side*7+'px, 13px) scale(.3)'}
-     ],{duration:480,easing:'ease-out'});
+      {opacity:0,transform:'translate(-50%, -50%) scale(.35) rotate(0deg)'},
+      {opacity:burst?1:.9,offset:.14,transform:'translate(-50%, -50%) scale(1) rotate(15deg)'},
+      {opacity:0,transform:'translate(calc(-50% + '+dx+'px), calc(-50% + '+dy+'px)) scale(.2) rotate(65deg)'}
+     ],{duration:burst?700:620,easing:'cubic-bezier(.16,1,.3,1)'});
      animations.set(node,animation);
      animation.onfinish=()=>{if(animations.get(node)===animation)animations.delete(node);};
     };
+    const hide=()=>{
+     enabled=false;document.body.classList.remove('wand-ready');cursor.classList.remove('visible','interactive');
+     animations.forEach(a=>a.cancel());animations.clear();
+     cancelAnimationFrame(frame);frame=0;resetSurface();
+    };
+    const render=()=>{
+     frame=0;
+     if(!enabled)return;
+     cursor.style.transform='translate3d('+x+'px,'+y+'px,0)';
+     if(active!==previous){resetSurface();previous=active;bounds=active?.getBoundingClientRect()||null;}
+     if(active&&bounds){
+      const px=Math.max(0,Math.min(1,(x-bounds.left)/bounds.width));
+      const py=Math.max(0,Math.min(1,(y-bounds.top)/bounds.height));
+      active.style.setProperty('--light-x',(px*100)+'%');
+      active.style.setProperty('--light-y',(py*100)+'%');
+      active.style.setProperty('--tilt-x',((.5-py)*5)+'deg');
+      active.style.setProperty('--tilt-y',((px-.5)*7)+'deg');
+      active.classList.add('pointer-lit');
+     }
+    };
+    const move=(event:PointerEvent)=>{
+     if(event.pointerType!=='mouse')return;
+     const target=event.target instanceof Element?event.target:null;
+     if(document.hidden||event.buttons||target?.closest('input, textarea, [contenteditable="true"]')){hide();return;}
+     x=event.clientX;y=event.clientY;enabled=true;
+     document.body.classList.add('wand-ready');cursor.classList.add('visible');
+     cursor.classList.toggle('interactive',!!target?.closest('a, button, [role="button"]'));
+     active=target?.closest<HTMLElement>('.ticket, .project-link, .competencies li, .about-award, .portrait')||null;
+     if(!frame)frame=requestAnimationFrame(render);
+     const now=performance.now();
+     if(now-lastTime<38||Math.hypot(x-lastX,y-lastY)<5)return;
+     lastTime=now;lastX=x;lastY=y;emit(x,y);
+    };
+    const click=(event:MouseEvent)=>{
+     if(!event.detail||!(event.target instanceof Element)||!event.target.closest('.ticket'))return;
+     for(let i=0;i<8;i++)emit(event.clientX,event.clientY,true,i);
+    };
+    const scroll=()=>{document.body.classList.remove('wand-ready');cursor.classList.remove('visible');active=null;resetSurface();};
+    const key=(event:KeyboardEvent)=>{if(event.key==='Tab')hide();};
+    const leave=(event:PointerEvent)=>{if(!event.relatedTarget)hide();};
     document.addEventListener('pointermove',move,{passive:true});
-    document.addEventListener('visibilitychange',clear);
-    window.addEventListener('blur',clear);
+    document.addEventListener('click',click,{passive:true});
+    document.addEventListener('keydown',key);
+    document.addEventListener('pointerout',leave);
+    document.addEventListener('visibilitychange',hide);
+    window.addEventListener('blur',hide);
+    window.addEventListener('scroll',scroll,{passive:true});
     cleanups.push(()=>{
-     document.removeEventListener('pointermove',move);
-     document.removeEventListener('visibilitychange',clear);
-     window.removeEventListener('blur',clear);
-     clear();layer.remove();
+     document.removeEventListener('pointermove',move);document.removeEventListener('click',click);
+     document.removeEventListener('keydown',key);document.removeEventListener('pointerout',leave);
+     document.removeEventListener('visibilitychange',hide);window.removeEventListener('blur',hide);
+     window.removeEventListener('scroll',scroll);
+     hide();layer.remove();
     });
    }
-   dispose=()=>{cleanups.forEach(fn=>fn());};
+   dispose=()=>cleanups.forEach(fn=>fn());
   };
-  configure();
-  reduced.addEventListener('change',configure);
-  fine.addEventListener('change',configure);
+  configure();reduced.addEventListener('change',configure);fine.addEventListener('change',configure);
   return ()=>{dispose();reduced.removeEventListener('change',configure);fine.removeEventListener('change',configure);};
  },[]);
 }
