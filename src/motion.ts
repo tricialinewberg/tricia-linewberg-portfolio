@@ -62,9 +62,10 @@ export function useTheatricalMotion() {
      node.style.left=px+'px';node.style.top=py+'px';
      const animation=node.animate([
       {opacity:0,transform:'translate(-50%, -50%) scale(.35) rotate(0deg)'},
-      {opacity:burst?1:.9,offset:.14,transform:'translate(-50%, -50%) scale(1) rotate(15deg)'},
+      {opacity:1,offset:.12,transform:'translate(-50%, -50%) scale(1) rotate(15deg)'},
+      {opacity:.85,offset:.42,transform:'translate(calc(-50% + '+dx*.3+'px), calc(-50% + '+dy*.3+'px)) scale(.9) rotate(30deg)'},
       {opacity:0,transform:'translate(calc(-50% + '+dx+'px), calc(-50% + '+dy+'px)) scale(.2) rotate(65deg)'}
-     ],{duration:burst?700:620,easing:'cubic-bezier(.16,1,.3,1)'});
+     ],{duration:burst?700:620,easing:'linear'});
      animations.set(node,animation);
      animation.onfinish=()=>{if(animations.get(node)===animation)animations.delete(node);};
     };
