@@ -1,4 +1,5 @@
-import {Asset,External,Header} from './components';
+import {ContactLinks} from './ContactLinks';
+import {Asset,Header} from './components';
 import {translations,type Locale} from './locales';
 import {projects} from './projects';
 export default function App({locale}:{locale:Locale}) {
@@ -31,6 +32,6 @@ export default function App({locale}:{locale:Locale}) {
    <section className="about-achievements" aria-labelledby="awards-title"><h3 id="awards-title">{t.recognition}</h3><div className="about-awards">{t.awards.map((a,i)=><div className="about-award" key={i}><p className="award-placement">{a}</p><h4>{t.awardNames[i]}</h4><p className="award-detail">{t.awardsDetail[i]}</p></div>)}</div></section>
   </div>
  </section>
- <section className="contact section" id="contact" aria-labelledby="contact-title"><div className="contact-inner"><p className="eyebrow">{t.contactLead}</p><h2 id="contact-title">{t.contact}</h2><p>{t.contactBody}</p><div className="contact-links"><External href={`https://wa.me/5586995473936?text=${encodeURIComponent(t.message)}`} className="contact-primary">WhatsApp <span aria-hidden="true">↗</span><span className="sr-only"> — {t.newTab}</span></External><a href="mailto:triciaux@gmail.com">{t.email} <span aria-hidden="true">↗</span></a><External href="https://www.linkedin.com/in/tricia-linewberg/">LinkedIn <span aria-hidden="true">↗</span><span className="sr-only"> — {t.newTab}</span></External></div><a className="email-address" href="mailto:triciaux@gmail.com">triciaux@gmail.com</a></div></section>
- </main><footer className="footer"><p>© 2026 Trícia Linewberg<span>{t.footer}</span></p><a href="#top">{t.top} ↑</a></footer></>
+ <section className="contact" id="contact" aria-label={t.nav[2]}><div className="contact-inner"><ContactLinks t={t}/></div></section>
+ </main><footer className="footer">Trícia Linewberg</footer></>
 }

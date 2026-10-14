@@ -85,3 +85,24 @@
  .competencies { grid-template-columns: repeat(4, minmax(0, 1fr)); }
  .about-achievements { margin-top: 48px; }
 }
+
+/* A quiet, unboxed contact row and signature. */
+.contact, .footer {
+ font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans SC', 'Noto Sans TC', sans-serif;
+ color: #2c2430;
+ background: linear-gradient(120deg, #f8f3ea, #fcf7ee 44%, #f3e7cc);
+}
+.contact { padding: 56px 0 20px; }
+.contact .contact-inner { width: min(1680px, calc(100% - 48px)); margin-inline: auto; padding: 0; border: 0; outline: 0; background: transparent; }
+.contact .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 32px; margin: 0; }
+.contact .contact-links a { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 0; border: 0; background: transparent; font-size: clamp(1.0625rem, 1.5vw, 1.25rem); font-weight: 600; line-height: 1.5; }
+.contact-links svg { flex: none; }
+.contact .contact-links a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; text-decoration-color: #2c243055; transition: color .18s, text-decoration-color .18s; }
+.contact .contact-links a:hover, .contact .contact-links a:focus-visible { color: #81571d; text-decoration-color: currentColor; }
+.contact .contact-links a:focus-visible { outline: 2px solid #9c6e1e; outline-offset: 6px; }
+.footer { width: 100%; margin: 0; border: 0; display: block; padding: 24px 24px 40px; text-align: center; font-size: 1rem; font-weight: 600; }
+@media (min-width: 600px) {
+ .contact { padding-top: 64px; }
+ .contact .contact-inner { width: min(1680px, calc(100% - 64px)); }
+ .contact .contact-links { gap: 20px clamp(32px, 4vw, 64px); }
+}

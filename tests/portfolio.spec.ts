@@ -72,6 +72,12 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
   if(width<850){await page.locator('.menu-toggle').click();await expect(page.locator('#main-nav')).toBeVisible();await page.keyboard.press('Escape');await expect(page.locator('.menu-toggle')).toBeFocused();await expect(page.locator('#main-nav')).toBeHidden()}
   const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
   expect(result.violations).toEqual([]);expect(errors).toEqual([]);
+  await expect(page.locator('.contact-links a > span:not(.sr-only)')).toHaveText(['GitHub','LinkedIn','Email','WhatsApp']);
+  await expect(page.locator('.contact-links a').first()).toHaveAttribute('href','https://github.com/tricialinewberg');
+  await expect(page.locator('.footer')).toHaveText('Trícia Linewberg');
+  await expect(page.locator('.contact')).not.toContainText('Instagram');
+  for(const link of await page.locator('.contact-links a').all()){await expect(link).toHaveCSS('border-top-width','0px');await expect(link).toHaveCSS('background-color','rgba(0, 0, 0, 0)');}
+  if([375,1440].includes(width)){await page.locator('#contact').screenshot({path:'work/test-results/contact-'+locale+'-'+width+'.png'});}
   await expect(page.locator('#about h2')).toHaveText(copy.about);
   await expect(page.locator('#about .biography')).toHaveCount(0);
   await expect(page.locator('.about-lead')).toHaveText(copy.aboutLead);
