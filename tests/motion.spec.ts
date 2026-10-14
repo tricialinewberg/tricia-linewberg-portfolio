@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 const route='http://127.0.0.1:4173'+(process.env.VITE_BASE_PATH||'/')+'en/';
+test.use({viewport:{width:1440,height:1000},video:'on'});
 test.describe('restrained theatrical motion',()=>{
- test.use({viewport:{width:1440,height:1000},video:'on'});
  test('bounded trail, one-shot reveals and precise ticket interaction',async({page})=>{
   await page.goto(route);
   await expect(page.locator('.wand-dust i')).toHaveCount(12);
