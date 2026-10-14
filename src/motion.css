@@ -1,0 +1,63 @@
+/* Shared, static stage lighting: no animated full-page gradients. */
+:root {
+ --stage-cream: #f8f3ea;
+ --stage-ivory: #fcf7ee;
+ --stage-champagne: #f3e7cc;
+ --stage-light-gold: #f8e7b5;
+ --stage-antique-gold: #d1a94c;
+ --stage-deep-gold: #a97825;
+ --stage-surface: linear-gradient(90deg, var(--stage-cream), var(--stage-ivory) 44%, var(--stage-champagne));
+ --stage-ease: cubic-bezier(.22, 1, .36, 1);
+}
+.hero, .works, .about, .contact, .footer { background-image: var(--stage-surface); }
+.hero {
+ background-image: linear-gradient(to bottom, var(--stage-cream), #f8f3ea00 140px),
+ radial-gradient(ellipse at 75% 28%, #f8e7b530, transparent 68%), var(--stage-surface);
+}
+.wand-dust { position: fixed; inset: 0; z-index: 100; overflow: hidden; pointer-events: none; contain: strict; }
+.wand-dust i { position: absolute; display: block; opacity: 0; pointer-events: none; width: 4px; height: 4px; background: #d1a94c; border-radius: 50%; }
+.wand-dust .dust-star { width: 7px; height: 7px; background: #b8842f; clip-path: polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%); }
+@media (hover: hover) and (pointer: fine) {
+ body { cursor: url('./wand.svg') 6 5, auto; }
+ a, button, [role="button"] { cursor: pointer; }
+ input, textarea, [contenteditable="true"] { cursor: text; }
+ .contact-links svg { transition: transform .2s var(--stage-ease); }
+ .contact .contact-links a:hover svg { transform: translateY(-2px); }
+ .project-link:hover h3 { color: #67471f; }
+ .project h3 { transition: color .2s; }
+ .competencies li { cursor: inherit; }
+}
+.ticket:active::after { box-shadow: inset 0 1px 0 #fff8de, inset 0 0 14px #fff8de70; }
+@media (prefers-reduced-motion: no-preference) {
+ @keyframes stage-enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+ .hero .welcome, .hero h1, .hero-subtitle, .hero .ticket, .hero .portrait {
+  animation: stage-enter 520ms var(--stage-ease) backwards;
+ }
+ .hero h1 { animation-delay: 60ms; }
+ .hero-subtitle { animation-delay: 110ms; }
+ .hero .ticket { animation-delay: 150ms; }
+ .hero .portrait { animation-delay: 200ms; }
+ .stage-reveal { animation: stage-enter 540ms var(--stage-ease); }
+ .stage-reveal:focus-within, .hero .ticket:focus-visible { animation: none; }
+ @keyframes award-light { from { opacity: 0; transform: translateX(-100%); } 25% { opacity: .5; } to { opacity: 0; transform: translateX(100%); } }
+ .about-award::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, #fff8de70 50%, transparent 70%); opacity: 0; pointer-events: none; }
+ .about-award.stage-reveal::after { animation: award-light 650ms var(--stage-ease) 100ms; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+ @keyframes ticket-shimmer { from { background-position: 120% 0, 0 0, 0 0; } to { background-position: -20% 0, 0 0, 0 0; } }
+ .ticket:hover::after {
+  background-image: linear-gradient(110deg, transparent 40%, #fff8de85 50%, transparent 60%), linear-gradient(180deg, #fff9e854, #fff9e80c 55%), var(--ticket-face);
+  background-size: 250% 100%, 100% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  animation: ticket-shimmer 650ms var(--stage-ease) both;
+ }
+}
+@media (hover: none), (pointer: coarse) {
+ .ticket:hover { transform: none; }
+ .ticket:active { transform: translateY(1px); }
+}
+@media (prefers-reduced-motion: reduce) {
+ .stage-reveal, .hero .welcome, .hero h1, .hero-subtitle, .hero .ticket, .hero .portrait { opacity: 1; animation: none !important; transform: none !important; }
+ .wand-dust { display: none; }
+ .contact .contact-links a:hover svg, .ticket:hover, .ticket:active { transform: none; }
+}

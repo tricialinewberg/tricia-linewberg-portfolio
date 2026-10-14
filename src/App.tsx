@@ -1,8 +1,10 @@
+import {useTheatricalMotion} from './motion';
 import {ContactLinks} from './ContactLinks';
 import {Asset,Header} from './components';
 import {translations,type Locale} from './locales';
 import {projects} from './projects';
 export default function App({locale}:{locale:Locale}) {
+ useTheatricalMotion();
  const t=translations[locale];
  return <><a className="skip" href="#main">{t.skip}</a><Header locale={locale} t={t}/><main id="main">
  <section className="hero" aria-labelledby="hero-title">

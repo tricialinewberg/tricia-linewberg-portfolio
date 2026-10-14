@@ -9,6 +9,7 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(route(`${locale}/`));
   await expect(page.locator('h1')).toBeVisible();
+  await page.locator('.hero').evaluate(el=>Promise.all(el.getAnimations({subtree:true}).map(a=>a.finished.catch(()=>{}))));
   await expect(page.locator('html')).toHaveAttribute('lang',locale==='pt-br'?'pt-BR':locale);
   for(const image of await page.locator('.brand img, .portrait img').all()){
    await expect.poll(()=>image.evaluate(img=>(img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);

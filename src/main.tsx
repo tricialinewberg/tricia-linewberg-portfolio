@@ -3,6 +3,7 @@ import App from './App';
 import {locales,htmlLang,translations,type Locale} from './locales';
 import './styles.css';
 import './hero.css';
+import './motion.css';
 import {withBase,localeSegment} from './paths';
 const segment=localeSegment(window.location.pathname) as Locale;
 const locale=locales.includes(segment)?segment:'pt-br';
