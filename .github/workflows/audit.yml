@@ -35,7 +35,7 @@ jobs:
           path: work/baseline-source
       - run: npm ci && npm run build && npm test
         working-directory: work/baseline-source
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps chromium firefox webkit
       - name: Capture approved baseline before candidate build
         run: |
           cd work/baseline-source
@@ -44,13 +44,14 @@ jobs:
           mkdir -p work/audit/baseline-html
           for locale in pt-br en es; do cp "work/baseline-source/dist/$locale/index.html" "work/audit/baseline-html/$locale.html"; done
           AUDIT_URL=http://127.0.0.1:4174 AUDIT_CAPTURE=1 npx playwright test --config playwright.audit.config.ts --update-snapshots
-      - run: npm run build && npm test
+      - run: npm run build && npm test && node scripts/verify-html-parity.mjs
       - name: Compare approved screenshots, accessibility tree and computed styles
         run: |
           npm run preview -- --port 4173 > /tmp/candidate-preview.log 2>&1 &
           npx playwright test --config playwright.audit.config.ts
       - run: npx playwright test --workers=2
-      - uses: actions/upload-artifact@v4
+      - run: npx playwright test --config playwright.compatibility.config.ts
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
           name: audit-${{ matrix.name }}
