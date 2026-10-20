@@ -2,7 +2,17 @@ name: Audit parity (no deployment)
 on:
   push:
     branches: [audit/senior-code-quality]
-    paths-ignore: ['docs/**', '**/*.md']
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'index.html'
+      - 'scripts/**'
+      - 'package*.json'
+      - 'vite.config.mjs'
+      - 'tsconfig.json'
+      - 'audit/**'
+      - 'playwright.audit.config.ts'
+      - 'playwright.compatibility.config.ts'
 permissions:
   contents: read
 jobs:
