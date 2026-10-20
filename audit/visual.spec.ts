@@ -15,7 +15,9 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,390,768,1024
    await element.evaluate(el=>Promise.all(el.getAnimations({subtree:true}).map(a=>a.finished.catch(()=>{}))));
   }
   await page.evaluate(async()=>{await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));window.scrollTo({top:0,behavior:'instant'});});
-  await page.mouse.move(0,0);await page.waitForTimeout(800);
+  // Leave the viewport so scroll-driven cursor hiding cannot race a full-page capture.
+  // Wand movement and click effects are covered separately by interaction tests.
+  await page.mouse.move(-20,-20);await page.waitForTimeout(800);
   const state=await page.evaluate(()=>{
    const properties=['display','position','width','height','margin','padding','gap','font-family','font-size','font-weight','line-height','letter-spacing','color','background-image','background-color','border','border-radius','box-shadow','object-fit','object-position','opacity','clip-path','transform'];
    return {
