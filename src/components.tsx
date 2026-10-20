@@ -19,4 +19,3 @@ export function Header({locale,t}:{locale:Locale;t:Copy}) {
   <nav className="languages" aria-label={t.language}>{locales.map(l=><a href={withBase(`${l}/`)} key={l} lang={l==='pt-br'?'pt-BR':l} hrefLang={l==='pt-br'?'pt-BR':l} aria-label={languages[l]} aria-current={locale===l?'page':undefined} onClick={e=>{e.currentTarget.href=`${withBase(`${l}/`)}${window.location.hash}`}}>{l==='pt-br'?'PT':l.toUpperCase()}</a>)}</nav>
  </div></header>
 }
-export function External({href,children,className}:{href:string;children:React.ReactNode;className?:string}) {return <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}</a>}

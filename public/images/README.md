@@ -1,13 +1,17 @@
-# Original assets required
+# Approved original portfolio images
 
-Upload the original files at these exact paths. No replacement artwork has been generated. The site reserves image space and displays a localized text fallback if a file is unavailable.
+These filenames and public URLs are intentional. `src/projects.ts` owns project cover paths; `src/App.tsx` and `src/components.tsx` reference the portrait and logo. `withBase` prefixes URLs for GitHub Pages without changing encoded filenames.
 
-- `profile/tricia-portrait.webp`
-- `branding/tricia-logo.png`
-- `projects/satra-wallet.webp`
-- `projects/avec-redesign.webp`
-- `projects/bitcoin-beauty-school.webp`
-- `projects/assistant-to-the-villain.webp`
-- `projects/lumier.webp`
+| File | Use |
+| --- | --- |
+| `#2a1a30 (8).png` | Hero portrait, public URL `images/%232a1a30%20(8).png` |
+| `01-cover (1).png` | SATRA Wallet |
+| `cover.png` | Bitcoin Beauty School |
+| `01-cover.png` | Assistant to the Villain |
+| `01-cover (2).png` | Avec — Redesign |
+| `tricia-logo-transparent.png` | Navbar brand |
+| `Algumas logo que já desenvolvi.png` | Preserved original, not currently rendered |
 
-Keep the logo tightly cropped with transparency where possible. Preserve the portrait's composition; the display crops to a 4:5 arch. Covers display at 16:10 (featured desktop: 16:9). Verify crops after upload. Export appropriately compressed WebP files; aim for a portrait below 200 KB and covers below 250 KB. Do not rename PNG bytes to WebP.
+Preserve filenames, accents, original image content, and metadata. Do not replace originals with stock/generated art or rename PNG bytes as another format. The approved covers and portrait use `object-fit: contain`; CSS controls their presentation and dimensions. A missing image has a localized fallback.
+
+Vite dev/preview uses explicit middleware for the encoded `#` portrait filename. Production GitHub Pages and Vercel serve these as static assets. Validate both hosting bases when changing asset handling. Image resizing, alternate formats, responsive derivatives, cropping and metadata removal require separate review. See `docs/ENGINEERING_AUDIT.md` for measurements and limitations.
