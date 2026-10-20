@@ -2,13 +2,14 @@ name: Audit parity (no deployment)
 on:
   push:
     branches: [audit/senior-code-quality]
-  pull_request:
+    paths-ignore: ['docs/**', '**/*.md']
 permissions:
   contents: read
 jobs:
   parity:
-    if: github.ref == 'refs/heads/audit/senior-code-quality' || github.head_ref == 'audit/senior-code-quality'
+    if: github.ref == 'refs/heads/audit/senior-code-quality'
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:
