@@ -1,0 +1,290 @@
+[
+  {
+    "file": "#2a1a30 (8).png",
+    "bytes": 17320495,
+    "width": 3375,
+    "height": 4219,
+    "idat_bytes": 17276059,
+    "recompressed_bytes": 17222694,
+    "saving": 53365,
+    "chunks": [
+      [
+        "IHDR",
+        13
+      ],
+      [
+        "caBX",
+        16927
+      ],
+      [
+        "eXIf",
+        180
+      ],
+      [
+        "pHYs",
+        9
+      ],
+      [
+        "iTXt",
+        1919
+      ],
+      [
+        "IDAT",
+        8192
+      ],
+      [
+        "IDAT",
+        8192
+      ],
+      [
+        "IDAT",
+        8192
+      ]
+    ],
+    "decoded_sha256": "00796137247ad7a98ddbe13cd78700eb62b35c10ab846c1cb40dcf220a0651a6"
+  },
+  {
+    "file": "01-cover (1).png",
+    "bytes": 219201,
+    "width": 1600,
+    "height": 1000,
+    "idat_bytes": 219108,
+    "recompressed_bytes": 214127,
+    "saving": 4981,
+    "chunks": [
+      [
+        "IHDR",
+        13
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        22500
+      ],
+      [
+        "IEND",
+        0
+      ]
+    ],
+    "decoded_sha256": "010598604adc843f1ac6650287d71b5a4955120d1bdd1ef2cf96cd0bd98ce13d"
+  },
+  {
+    "file": "01-cover (2).png",
+    "bytes": 363338,
+    "width": 1600,
+    "height": 1000,
+    "idat_bytes": 363221,
+    "recompressed_bytes": 352130,
+    "saving": 11091,
+    "chunks": [
+      [
+        "IHDR",
+        13
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        35541
+      ],
+      [
+        "IEND",
+        0
+      ]
+    ],
+    "decoded_sha256": "5695963df52137431cd61c3c50af619bec35031eff92f4fcfcdfa180e6d2297c"
+  },
+  {
+    "file": "01-cover.png",
+    "bytes": 268631,
+    "width": 1600,
+    "height": 1000,
+    "idat_bytes": 268526,
+    "recompressed_bytes": 262575,
+    "saving": 5951,
+    "chunks": [
+      [
+        "IHDR",
+        13
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        6382
+      ],
+      [
+        "IEND",
+        0
+      ]
+    ],
+    "decoded_sha256": "5236fb40318c87ca1bd4f5122f66b1f519bf75f153dfd8b56aaea4827cf1866c"
+  },
+  {
+    "file": "Algumas logo que j\u00e1 desenvolvi.png",
+    "bytes": 355956,
+    "width": 3375,
+    "height": 4219,
+    "idat_bytes": 354321,
+    "recompressed_bytes": 339746,
+    "saving": 14575,
+    "chunks": [
+      [
+        "IHDR",
+        13
+      ],
+      [
+        "pHYs",
+        9
+      ],
+      [
+        "iTXt",
+        1455
+      ],
+      [
+        "eXIf",
+        78
+      ],
+      [
+        "IDAT",
+        354321
+      ],
+      [
+        "IEND",
+        0
+      ]
+    ],
+    "decoded_sha256": "7c44903a5a4ab1547410efc659f393b64a48a87e7fafc282d4aa9684cde176a2"
+  },
+  {
+    "file": "cover.png",
+    "bytes": 571679,
+    "width": 1600,
+    "height": 1000,
+    "idat_bytes": 569942,
+    "recompressed_bytes": 523670,
+    "saving": 46272,
+    "chunks": [
+      [
+        "IHDR",
+        13
+      ],
+      [
+        "IDAT",
+        4096
+      ],
+      [
+        "IDAT",
+        4096
+      ],
+      [
+        "IDAT",
+        4096
+      ],
+      [
+        "IDAT",
+        4096
+      ],
+      [
+        "IDAT",
+        4096
+      ],
+      [
+        "IDAT",
+        4096
+      ],
+      [
+        "IDAT",
+        4096
+      ]
+    ],
+    "decoded_sha256": "9a81f06226bfc3039fc417fabb52a1424a498c46f26823e65666ef9e3f956d2e"
+  },
+  {
+    "file": "tricia-logo-transparent.png",
+    "bytes": 1278244,
+    "width": 1536,
+    "height": 1024,
+    "idat_bytes": 1254293,
+    "recompressed_bytes": 1187156,
+    "saving": 67137,
+    "chunks": [
+      [
+        "IHDR",
+        13
+      ],
+      [
+        "caBX",
+        23654
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ],
+      [
+        "IDAT",
+        65536
+      ]
+    ],
+    "decoded_sha256": "ea1bd7f7d83066b7fba0a1c9018d665a2f16dc2c50475df6802ce26d4fba3c97"
+  }
+]

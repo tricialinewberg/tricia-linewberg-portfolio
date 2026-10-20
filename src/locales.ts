@@ -2,13 +2,17 @@ export const locales = ['pt-br','en','es'] as const;
 export type Locale = typeof locales[number];
 export const languages = {'pt-br':'Português (Brasil)',en:'English',es:'Español'};
 export const htmlLang = {'pt-br':'pt-BR',en:'en',es:'es'};
+type Pair = readonly [string, string];
+type NavigationLabels = readonly [string, string, string];
+type ProjectDescriptions = readonly [string, string, string, string];
+type CompetencyLabels = readonly [string, string, string, string, string, string, string, string];
 export interface Copy {
- title:string; description:string; nav:string[]; skip:string; menu:string; close:string; language:string;
+ title:string; description:string; nav:NavigationLabels; skip:string; menu:string; close:string; language:string;
  welcome:string; intro:string; subtitle:string; ticket:string;
  portrait:string; missingPortrait:string; missingCover:string; cover:string; home:string;
  act:string; works:string; worksIntro:string; view:string; exploreWebsite:string; viewCase:string; newTab:string; featured:string;
- descriptions:string[]; about:string; aboutLead:string; 
- skillsTitle:string; skills:string[]; recognition:string; awards:string[]; awardNames:string[]; awardsDetail:string[];
+ descriptions:ProjectDescriptions; about:string; aboutLead:string;
+ skillsTitle:string; skills:CompetencyLabels; recognition:string; awards:Pair; awardNames:Pair; awardsDetail:Pair;
  contact:string; contactLead:string; contactBody:string; message:string; email:string; footer:string; top:string;
 }
 export const translations:Record<Locale,Copy> = {

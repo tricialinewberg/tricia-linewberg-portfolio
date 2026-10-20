@@ -1,0 +1,21 @@
+[
+  ".about-grid{padding-block:60px;display:grid;gap:25px}",
+  ".ornament{color:var(--gold);font-family:var(--serif);font-size:4rem;line-height:1.5}",
+  ".biography p{color:var(--muted);font-size:.94rem;margin-bottom:20px}",
+  ".biography h3{font-size:1.55rem;margin-top:30px}",
+  ".skills{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:0}",
+  ".skills li{border-top:1px solid var(--line);padding:13px 0;font-size:.77rem}",
+  ".skills li:before{content:'↗';margin-right:12px}",
+  ".recognition{padding-block:60px}",
+  ".recognition h2{max-width:600px}",
+  ".awards{display:grid;gap:24px;margin-top:34px}",
+  ".award{display:flex;align-items:center;gap:24px;border-block:1px solid var(--line);padding:28px 0}",
+  ".award-index{font-family:var(--serif);font-size:2.2rem;border:1px solid var(--gold);border-radius:50%;width:64px;height:78px;flex-shrink:0;display:grid;place-items:center}",
+  ".award h3{font-size:2rem}",
+  ".award p{font-size:.78rem;color:var(--muted);margin-top:5px}",
+  ".skills{grid-template-columns:1fr 1fr;column-gap:20px}",
+  ".awards{grid-template-columns:1fr 1fr}",
+  ".about-grid{grid-template-columns:1fr 1.25fr;gap:90px;padding-block:85px}",
+  ".recognition{padding-block:80px}",
+  ".awards{gap:60px}"
+]

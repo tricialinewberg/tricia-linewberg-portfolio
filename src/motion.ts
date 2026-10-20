@@ -1,5 +1,6 @@
 import {useEffect} from 'react';
 import {setupTouchFeedback} from './touch-motion';
+import {setupReveals} from './reveal';
 
 /** All motion is enhancement: static markup is visible before setup and after cleanup. */
 export function useTheatricalMotion() {
@@ -12,24 +13,7 @@ export function useTheatricalMotion() {
    dispose();
    const cleanups:Array<()=>void>=[];
    if(reduced.matches){dispose=()=>{};return;}
-   if('IntersectionObserver' in window){
-    const observer=new IntersectionObserver(entries=>{
-     for(const entry of entries){
-      if(!entry.isIntersecting)continue;
-      const element=entry.target as HTMLElement;
-      if(element.dataset.revealed)continue;
-      element.dataset.revealed='true';
-      element.classList.add('is-revealed');
-      const complete=()=>observer.unobserve(element);
-      element.addEventListener('animationend',complete,{once:true});
-      cleanups.push(()=>element.removeEventListener('animationend',complete));
-     }
-    },{threshold:.12});
-    document.querySelectorAll<HTMLElement>('.project, .competencies, .about-award').forEach(el=>{
-     if(!el.dataset.revealed)observer.observe(el);
-    });
-    cleanups.push(()=>observer.disconnect());
-   }
+   cleanups.push(setupReveals());
    if(fine.matches && typeof Element.prototype.animate==='function'){
     const layer=document.createElement('div');
     layer.className='wand-dust';layer.setAttribute('aria-hidden','true');

@@ -1,0 +1,72 @@
+name: Audit parity (no deployment)
+on:
+  push:
+    branches: [audit/senior-code-quality]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'index.html'
+      - 'scripts/**'
+      - 'package*.json'
+      - 'vite.config.mjs'
+      - 'tsconfig.json'
+      - 'audit/**'
+      - 'playwright.audit.config.ts'
+      - 'playwright.compatibility.config.ts'
+permissions:
+  contents: read
+jobs:
+  parity:
+    if: github.ref == 'refs/heads/audit/senior-code-quality'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: root
+            base: /
+            site: https://tricia-linewberg-portfolio.vercel.app
+          - name: pages
+            base: /tricia-linewberg-portfolio/
+            site: https://tricialinewberg.github.io/tricia-linewberg-portfolio
+    env:
+      VITE_BASE_PATH: ${{ matrix.base }}
+      SITE_URL: ${{ matrix.site }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 9dd07425446935efd2e49e6a31d3142c6b5d49da
+          path: work/baseline-source
+      - run: npm ci && npm run build && npm test
+        working-directory: work/baseline-source
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - name: Capture approved baseline before candidate build
+        run: |
+          cd work/baseline-source
+          npm run preview -- --port 4174 > /tmp/baseline-preview.log 2>&1 &
+          cd ../..
+          mkdir -p work/audit/baseline-html
+          for locale in pt-br en es; do cp "work/baseline-source/dist/$locale/index.html" "work/audit/baseline-html/$locale.html"; done
+          AUDIT_URL=http://127.0.0.1:4174 AUDIT_CAPTURE=1 npx playwright test --config playwright.audit.config.ts --update-snapshots
+      - run: npm run build && npm test && node scripts/verify-html-parity.mjs
+      - name: Compare approved screenshots, accessibility tree and computed styles
+        run: |
+          npm run preview -- --port 4173 > /tmp/candidate-preview.log 2>&1 &
+          npx playwright test --config playwright.audit.config.ts
+      - run: npx playwright test --workers=2
+      - run: npx playwright test --config playwright.compatibility.config.ts
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: audit-${{ matrix.name }}
+          path: |
+            work/audit
+            work/test-results
+          retention-days: 30

@@ -1,1 +1,16 @@
-{"cleanUrls":true,"trailingSlash":true,"redirects":[{"source":"/","destination":"/pt-br/","permanent":false}]}
+{
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/pt-br/",
+      "permanent": false
+    }
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "audit/senior-code-quality": false
+    }
+  }
+}
