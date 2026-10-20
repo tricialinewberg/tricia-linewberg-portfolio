@@ -6,7 +6,8 @@ import { resolve } from 'node:path';
 function servePortrait(directory, base) {
   return (request, response, next) => {
     if (!['GET', 'HEAD'].includes(request.method)) return next();
-    const pathname = new URL(request.url, 'http://localhost').pathname;
+    let pathname;
+    try { pathname = new URL(request.url, 'http://localhost').pathname; } catch { return next(); }
     const imageUrl = 'images/%232a1a30%20(8).png';
     if (pathname !== `/${imageUrl}` && pathname !== `${base}${imageUrl}`) return next();
     const path = resolve(directory, 'images', '#2a1a30 (8).png');
@@ -15,7 +16,9 @@ function servePortrait(directory, base) {
     response.setHeader('Content-Type', 'image/png');
     response.setHeader('Content-Length', stat.size);
     if (request.method === 'HEAD') return response.end();
-    createReadStream(path).on('error', () => response.destroy()).pipe(response);
+    const stream = createReadStream(path);
+    response.once('close', () => stream.destroy());
+    stream.on('error', () => response.destroy()).pipe(response);
   };
 }
 
