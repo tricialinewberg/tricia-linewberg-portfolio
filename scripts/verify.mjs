@@ -13,7 +13,7 @@ for(const locale of locales){
  assert.equal(translations[locale].descriptions.length,4);
  assert.ok(!html.includes('Lumier'));
  const titles=['SATRA Wallet','Bitcoin Beauty School','Assistant to the Villain','Avec — Redesign'];
- const positions=titles.map(title=>html.indexOf(`>${title}</h3>`));
+ const positions=titles.map(title=>html.indexOf(`>${title}${title==='Assistant to the Villain'?'<span':'</h3>'}`));
  assert.ok(positions.every((position,i)=>position>=0&&(i===0||position>positions[i-1])));
 }
 console.log('Static content, locale parity, project count and contact checks passed.');

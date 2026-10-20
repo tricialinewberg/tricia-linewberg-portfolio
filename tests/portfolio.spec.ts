@@ -45,7 +45,7 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
   const heroBottom=await page.locator('.hero').evaluate(el=>el.getBoundingClientRect().bottom);
   await page.screenshot({path:`work/test-results/hero-${locale}-${width}.png`,fullPage:true,clip:{x:0,y:0,width,height:Math.ceil(heroBottom)}});
   await expect(page.locator('.project-link')).toHaveCount(4);
-  await expect(page.locator('.project h3')).toHaveText(['SATRA Wallet','Bitcoin Beauty School','Assistant to the Villain','Avec — Redesign']);
+  await expect(page.locator('.project h3')).toHaveText(['SATRA Wallet','Bitcoin Beauty School',new RegExp('^Assistant to the Villain'),'Avec — Redesign']);
   await expect(page.locator('#projects')).not.toContainText('Lumier');
   await expect(page.locator('#works-title')).toHaveText(copy.works);
   await expect(page.locator('.works .section-heading > p')).toHaveText(copy.worksIntro);
@@ -53,10 +53,11 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
   await expect(page.locator('.works')).toHaveCSS('font-family', await page.locator('.hero').evaluate(el=>getComputedStyle(el).fontFamily));
   for(const row of await page.locator('.project-link').all()){
    await row.scrollIntoViewIfNeeded();
-   await expect(row).toHaveAttribute('target','_blank');
-   await expect(row).toHaveAttribute('rel','noopener noreferrer');
-   await expect(row).toHaveAttribute('href',/^https:\/\/www\.behance\.net\/gallery\//);
-   await expect(row).toHaveAccessibleName(/Behance/);
+   const destination=await row.evaluate(el=>el.tagName==='A')?row:row.locator('.project-image');
+   await expect(destination).toHaveAttribute('target','_blank');
+   await expect(destination).toHaveAttribute('rel','noopener noreferrer');
+   await expect(destination).toHaveAttribute('href',/^https:\/\/www\.behance\.net\/gallery\//);
+   await expect(destination).toHaveAccessibleName(/Behance/);
    const image=row.locator('img');
    await expect.poll(()=>image.evaluate(img=>(img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
    const cover=(await row.locator('.project-image').boundingBox())!;

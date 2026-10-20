@@ -6,7 +6,7 @@ export interface Copy {
  title:string; description:string; nav:string[]; skip:string; menu:string; close:string; language:string;
  welcome:string; intro:string; subtitle:string; ticket:string;
  portrait:string; missingPortrait:string; missingCover:string; cover:string; home:string;
- act:string; works:string; worksIntro:string; view:string; newTab:string; featured:string;
+ act:string; works:string; worksIntro:string; view:string; exploreWebsite:string; viewCase:string; newTab:string; featured:string;
  descriptions:string[]; about:string; aboutLead:string; 
  skillsTitle:string; skills:string[]; recognition:string; awards:string[]; awardNames:string[]; awardsDetail:string[];
  contact:string; contactLead:string; contactBody:string; message:string; email:string; footer:string; top:string;
@@ -17,7 +17,7 @@ export const translations:Record<Locale,Copy> = {
  nav:['Projetos','Sobre','Contato'],skip:'Ir para o conteúdo',menu:'Abrir menu',close:'Fechar menu',language:'Selecionar idioma',
  welcome:'Bem-vindo, bem-vinda!',intro:'Você chegou ao portfólio de',subtitle:'Um espetáculo de estratégia de produto, design de interfaces e narrativas digitais.',ticket:'ADMIT ONE — conhecer os projetos',
  portrait:'Trícia Linewberg usando cartola em um retrato teatral',missingPortrait:'Retrato original em breve',missingCover:'Capa original em breve',cover:'Capa do projeto',home:'Trícia Linewberg — início',
- act:'Ato',works:'Projetos',worksIntro:'Confira alguns dos trabalhos que já desenvolvi.',view:'Ver no Behance',newTab:'abre em uma nova aba',featured:'1º lugar · Hack4Freedom 2026',
+ act:'Ato',works:'Projetos',worksIntro:'Confira alguns dos trabalhos que já desenvolvi.',view:'Ver no Behance',exploreWebsite:'Explorar o site',viewCase:'Ver case no Behance',newTab:'abre em uma nova aba',featured:'1º lugar · Hack4Freedom 2026',
  descriptions:["Carteira Bitcoin · 1º lugar no Hack4Freedom 2026.","Educação Bitcoin por meio da beleza.","Website de ficção · Projeto de fã.","Auditoria UX/UI e redesign de experiência."],
  about:"Sobre",aboutLead:"Designer com experiência em UX/UI, produto e experiências digitais.",
  skillsTitle:"Competências",skills:["UX/UI Designer","Product Designer","+6 anos de experiência","Pós em Inovação e Design Digital","IA no processo criativo","Product Analyst","Data-driven UX","Web Designer"],
@@ -29,7 +29,7 @@ export const translations:Record<Locale,Copy> = {
  nav:['Projects','About','Contact'],skip:'Skip to content',menu:'Open menu',close:'Close menu',language:'Select language',
  welcome:'Welcome, welcome!',intro:"You've arrived at the portfolio of",subtitle:'A grand display of product thinking, interface design, and digital storytelling.',ticket:'ADMIT ONE — explore selected works',
  portrait:'Trícia Linewberg wearing a top hat in a theatrical portrait',missingPortrait:'Original portrait coming soon',missingCover:'Original cover coming soon',cover:'Project cover for',home:'Trícia Linewberg — home',
- act:'Act',works:'Projects',worksIntro:'Take a look at some of the projects I’ve developed.',view:'View on Behance',newTab:'opens in a new tab',featured:'1st place · Hack4Freedom 2026',
+ act:'Act',works:'Projects',worksIntro:'Take a look at some of the projects I’ve developed.',view:'View on Behance',exploreWebsite:'Explore Website',viewCase:'View Case on Behance',newTab:'opens in a new tab',featured:'1st place · Hack4Freedom 2026',
  descriptions:["Bitcoin wallet · Hack4Freedom 2026 winner.","Bitcoin education through the language of beauty.","Fictional website · Fan project.","UX/UI audit and experience redesign."],
  about:"About",aboutLead:"Designer with experience in UX/UI, product, and digital experiences.",
  skillsTitle:"Competencies",skills:["UX/UI Designer","Product Designer","6+ years of experience","Postgraduate qualification in Innovation and Digital Design","AI in the creative process","Product Analyst","Data-driven UX","Web Designer"],
@@ -41,7 +41,7 @@ export const translations:Record<Locale,Copy> = {
  nav:['Proyectos','Sobre mí','Contacto'],skip:'Saltar al contenido',menu:'Abrir menú',close:'Cerrar menú',language:'Seleccionar idioma',
  welcome:'¡Bienvenido, bienvenida!',intro:'Has llegado al portafolio de',subtitle:'Una muestra de estrategia de producto, diseño de interfaces y narrativa digital.',ticket:'ADMIT ONE — explorar los proyectos',
  portrait:'Trícia Linewberg con sombrero de copa en un retrato teatral',missingPortrait:'Retrato original próximamente',missingCover:'Portada original próximamente',cover:'Portada del proyecto',home:'Trícia Linewberg — inicio',
- act:'Acto',works:'Proyectos',worksIntro:'Mira algunos de los proyectos que ya he desarrollado.',view:'Ver en Behance',newTab:'se abre en una pestaña nueva',featured:'1.er puesto · Hack4Freedom 2026',
+ act:'Acto',works:'Proyectos',worksIntro:'Mira algunos de los proyectos que ya he desarrollado.',view:'Ver en Behance',exploreWebsite:'Explorar el sitio web',viewCase:'Ver caso en Behance',newTab:'se abre en una pestaña nueva',featured:'1.er puesto · Hack4Freedom 2026',
  descriptions:["Billetera Bitcoin · Ganadora del Hack4Freedom 2026.","Educación Bitcoin a través de la belleza.","Sitio de ficción · Proyecto de fan.","Auditoría UX/UI y rediseño de experiencia."],
  about:"Sobre mí",aboutLead:"Diseñadora con experiencia en UX/UI, producto y experiencias digitales.",
  skillsTitle:"Competencias",skills:["Diseñadora UX/UI","Diseñadora de producto","Más de 6 años de experiencia","Posgrado en Innovación y Diseño Digital","IA en el proceso creativo","Product Analyst","Data-driven UX","Diseñadora web"],

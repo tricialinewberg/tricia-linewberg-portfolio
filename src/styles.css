@@ -106,3 +106,7 @@
  .contact .contact-inner { width: min(1680px, calc(100% - 64px)); }
  .contact .contact-links { gap: 20px clamp(32px, 4vw, 64px); }
 }
+
+/* Independent destinations for this project only; retain the existing row grid. */
+.project--assistant-to-the-villain .project-actions { display: flex; flex-wrap: wrap; column-gap: 24px; }
+.project--assistant-to-the-villain a.case-link:hover, .project--assistant-to-the-villain a.case-link:focus-visible { color: #81571d; text-decoration-color: currentColor; }
