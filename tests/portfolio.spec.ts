@@ -54,6 +54,7 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
   for(const row of await page.locator('.project-link').all()){
    await row.scrollIntoViewIfNeeded();
    const destination=await row.evaluate(el=>el.tagName==='A')?row:row.locator('.project-image');
+   const image=row.locator('img');
    await expect(destination).toHaveAttribute('target','_blank');
    await expect(destination).toHaveAttribute('rel','noopener noreferrer');
    if(await row.evaluate(el=>el.classList.contains('project--ifood-drone'))){
@@ -66,7 +67,6 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
     await expect(destination).toHaveAccessibleName(/Behance/);
     await expect(image).toHaveCSS('object-fit','contain');
    }
-   const image=row.locator('img');
    await expect.poll(()=>image.evaluate(img=>(img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
    const cover=(await row.locator('.project-image').boundingBox())!;
    const copy=(await row.locator('.project-copy').boundingBox())!;
