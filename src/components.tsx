@@ -6,7 +6,7 @@ export function Asset({src,alt,fallback,className='',priority=false}:{src:string
  const [failed,setFailed]=useState(false);
  const ref=useRef<HTMLImageElement>(null);
  useEffect(()=>{if(ref.current?.complete && !ref.current.naturalWidth)setFailed(true)},[]);
- return <div className={`asset ${className}`}>{!failed ? <img ref={ref} src={withBase(src)} alt={alt} width={priority?720:1200} height={priority?900:750} loading={priority?'eager':'lazy'} fetchPriority={priority?'high':undefined} onError={()=>setFailed(true)}/> : <span className="asset-empty">{fallback}</span>}</div>
+ return <div className={`asset ${className}`}>{!failed ? <img ref={ref} src={/^https?:\/\//i.test(src)?src:withBase(src)} alt={alt} width={priority?720:1200} height={priority?900:750} loading={priority?'eager':'lazy'} fetchPriority={priority?'high':undefined} onError={()=>setFailed(true)}/> : <span className="asset-empty">{fallback}</span>}</div>
 }
 export function Header({locale,t}:{locale:Locale;t:Copy}) {
  const [open,setOpen]=useState(false);

@@ -16,7 +16,7 @@ export function ProjectList({t}:{t:Copy}) {
     </div>
    </div>:<a className="project-link" href={p.url} target="_blank" rel="noopener noreferrer" aria-labelledby={`${p.id}-title ${p.id}-link`}>
     <div className="project-image"><Asset src={p.image} alt="" fallback={t.missingCover}/></div>
-    <div className="project-copy"><h3 id={`${p.id}-title`}>{p.name}</h3><p>{t.descriptions[i]}</p><span className="case-link" id={`${p.id}-link`}>{t.view}<span aria-hidden="true">↗</span><span className="sr-only"> — {t.newTab}</span></span></div>
+    <div className="project-copy">{p.id==='ifood-drone'?<p className="project-category">{t.independentConcept}</p>:null}<h3 id={`${p.id}-title`}>{p.name}</h3><p>{t.descriptions[i]}</p><span className="case-link" id={`${p.id}-link`}>{p.id==='ifood-drone'?t.exploreProject:t.view}<span aria-hidden="true">↗</span><span className="sr-only"> — {t.newTab}</span></span></div>
    </a>}
   </article>)}</div>
  );
