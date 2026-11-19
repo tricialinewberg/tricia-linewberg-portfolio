@@ -113,5 +113,5 @@
 
 
 /* iFood Drone uses its authentic wide cover and independent-concept label. */
-.project-category { margin: 0 0 8px; color: #81571d; font-size: clamp(.75rem, 1vw, .9rem); font-weight: 700; letter-spacing: .045em; line-height: 1.4; }
+.project-copy > .project-category { margin: 0 0 8px; color: #81571d; font-size: clamp(.75rem, 1vw, .9rem); font-weight: 700; letter-spacing: .045em; line-height: 1.4; }
 .project--ifood-drone .project-image img { object-fit: cover; object-position: center; }
