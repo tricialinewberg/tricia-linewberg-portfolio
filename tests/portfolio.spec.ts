@@ -44,8 +44,8 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
   await page.evaluate(()=>document.fonts.ready);
   const heroBottom=await page.locator('.hero').evaluate(el=>el.getBoundingClientRect().bottom);
   await page.screenshot({path:`work/test-results/hero-${locale}-${width}.png`,fullPage:true,clip:{x:0,y:0,width,height:Math.ceil(heroBottom)}});
-  await expect(page.locator('.project-link')).toHaveCount(4);
-  await expect(page.locator('.project h3')).toHaveText(['SATRA Wallet','Bitcoin Beauty School',new RegExp('^Assistant to the Villain'),'Avec — Redesign']);
+  await expect(page.locator('.project-link')).toHaveCount(5);
+  await expect(page.locator('.project h3')).toHaveText(['SATRA Wallet','iFood Drone','Bitcoin Beauty School',new RegExp('^Assistant to the Villain'),'Avec — Redesign']);
   await expect(page.locator('#projects')).not.toContainText('Lumier');
   await expect(page.locator('#works-title')).toHaveText(copy.works);
   await expect(page.locator('.works .section-heading > p')).toHaveText(copy.worksIntro);
@@ -56,15 +56,22 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
    const destination=await row.evaluate(el=>el.tagName==='A')?row:row.locator('.project-image');
    await expect(destination).toHaveAttribute('target','_blank');
    await expect(destination).toHaveAttribute('rel','noopener noreferrer');
-   await expect(destination).toHaveAttribute('href',/^https:\/\/www\.behance\.net\/gallery\//);
-   await expect(destination).toHaveAccessibleName(/Behance/);
+   if(await row.evaluate(el=>el.classList.contains('project--ifood-drone'))){
+    await expect(destination).toHaveAttribute('href','https://ifood-drone-conceito.vercel.app/');
+    await expect(destination).toHaveAccessibleName(/Explore project/);
+    await expect(row.locator('.project-category')).toHaveText(copy.independentConcept);
+    await expect(image).toHaveCSS('object-fit','cover');
+   }else{
+    await expect(destination).toHaveAttribute('href',/^https:\/\/www\.behance\.net\/gallery\//);
+    await expect(destination).toHaveAccessibleName(/Behance/);
+    await expect(image).toHaveCSS('object-fit','contain');
+   }
    const image=row.locator('img');
    await expect.poll(()=>image.evaluate(img=>(img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
    const cover=(await row.locator('.project-image').boundingBox())!;
    const copy=(await row.locator('.project-copy').boundingBox())!;
    expect(cover.width).toBeGreaterThan(cover.height);
    expect(cover.width).toBeGreaterThanOrEqual(width<600?100:250);
-   await expect(image).toHaveCSS('object-fit','contain');
    await expect(image).toHaveCSS('object-position','50% 50%');
    expect(copy.x).toBeGreaterThan(cover.x+cover.width);
   }
