@@ -57,7 +57,7 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
    const image=row.locator('img');
    await expect(destination).toHaveAttribute('target','_blank');
    await expect(destination).toHaveAttribute('rel','noopener noreferrer');
-   if(await row.evaluate(el=>el.classList.contains('project--ifood-drone'))){
+   if(await row.evaluate(el=>el.closest('.project')?.classList.contains('project--ifood-drone'))){
     await expect(destination).toHaveAttribute('href','https://ifood-drone-conceito.vercel.app/');
     await expect(destination).toHaveAccessibleName(new RegExp(copy.exploreProject));
     await expect(row.locator('.project-category')).toHaveText(copy.independentConcept);
