@@ -1,5 +1,5 @@
 export const projects = [
-  {id:'satra-wallet',image:'/images/01-cover%20(1).png',name:'SATRA Wallet',url:'https://www.behance.net/gallery/254727621/SATRA-WALLET-(-1ST-PLACE-AT-HACK4FREEDOM-)'},
+  {id:'satra-wallet',image:'/images/satra-wallet-cover.png',name:'SATRA Wallet',url:'https://www.behance.net/gallery/254727621/SATRA-WALLET-(-1ST-PLACE-AT-HACK4FREEDOM-)'},
   {id:'ifood-drone',image:'https://raw.githubusercontent.com/tricialinewberg/ifood-drone-conceito/main/public/images/hero-city-drone.png',name:'iFood Drone',url:'https://ifood-drone-conceito.vercel.app/'},
   {id:'bitcoin-beauty-school',image:'/images/cover.png',name:'Bitcoin Beauty School',url:'https://www.behance.net/gallery/254405015/Bitcoin-Beauty-School'},
   {id:'assistant-to-the-villain',image:'/images/01-cover.png',name:'Assistant to the Villain',url:'https://www.behance.net/gallery/254726489/WebSite-(Fictional)'},
