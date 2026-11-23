@@ -6,6 +6,10 @@
  <linearGradient id="gold" x2="0" y2="1"><stop stop-color="#f1ce70"/><stop offset="1" stop-color="#9c6b12"/></linearGradient>
  <linearGradient id="glass" x2="1" y2="1"><stop stop-color="#263b48"/><stop offset=".5" stop-color="#101a22"/><stop offset="1" stop-color="#35434b"/></linearGradient>
  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="24"/></filter>
+ <linearGradient id="editorialShade" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#090d11" stop-opacity=".98"/><stop offset=".34" stop-color="#090d11" stop-opacity=".78"/><stop offset=".63" stop-color="#090d11" stop-opacity=".12"/><stop offset="1" stop-color="#090d11" stop-opacity=".04"/></linearGradient>
+ <radialGradient id="spotlight"><stop stop-color="#f0c96a" stop-opacity=".24"/><stop offset="1" stop-color="#f0c96a" stop-opacity="0"/></radialGradient>
+ <linearGradient id="edgeLight" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff" stop-opacity=".13"/><stop offset=".18" stop-color="#ffffff" stop-opacity="0"/><stop offset=".82" stop-color="#000000" stop-opacity="0"/><stop offset="1" stop-color="#000000" stop-opacity=".48"/></linearGradient>
+ <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="46"/></filter>
  <pattern id="perfs" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.5" fill="#89919a" opacity=".28"/></pattern>
 </defs>
 <rect width="1600" height="900" fill="url(#bg)"/>
@@ -52,6 +56,12 @@
  <g fill="#c6a15a"><circle cx="890" cy="170" r="13"/><circle cx="945" cy="170" r="11"/><circle cx="995" cy="170" r="10"/></g>
  <g fill="#818b94"><circle cx="155" cy="120" r="7"/><circle cx="1035" cy="120" r="7"/><circle cx="155" cy="835" r="7"/><circle cx="1035" cy="835" r="7"/></g>
 </g>
+<ellipse cx="1120" cy="390" rx="530" ry="390" fill="url(#spotlight)"/>
+<!-- editorial lighting and depth -->
+<path d="M520 0H1600V900H520Z" fill="url(#edgeLight)" opacity=".8"/>
+<rect width="1600" height="900" fill="url(#editorialShade)"/>
+<path d="M0 0H1600" stroke="#e4bd62" stroke-opacity=".72" stroke-width="3"/>
+<path d="M0 896H1600" stroke="#e4bd62" stroke-opacity=".22" stroke-width="2"/>
 <!-- subtle refrigeration coil motif in the far background -->
 <g opacity=".24" fill="none" stroke="#aeb8bf" stroke-width="5">
  <path d="M1310 90h110v75h-110v75h110v75h-110v75h110v75h-110"/>
@@ -60,8 +70,14 @@
 <rect x="0" y="0" width="1600" height="900" fill="none" stroke="#b8860b" stroke-opacity=".35" stroke-width="3"/>
 <!-- restrained brand signature -->
 <g transform="translate(82 735)">
- <rect width="5" height="92" fill="url(#gold)"/>
- <text x="32" y="42" fill="#f1eee6" font-family="Montserrat,Arial,sans-serif" font-size="34" font-weight="700" letter-spacing="1">SENA PINHEIRO</text>
- <text x="34" y="78" fill="#c7a65c" font-family="Arial,sans-serif" font-size="17" font-weight="600" letter-spacing="4">ELÉTRICA  •  CLIMATIZAÇÃO</text>
+ <text x="0" y="-270" fill="#d7b766" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="5">IDENTIDADE VISUAL  /  WEBSITE</text>
+ <rect x="0" y="-242" width="64" height="3" fill="url(#gold)"/>
+ <text x="0" y="-160" fill="#f3f0e8" font-family="Montserrat,Arial,sans-serif" font-size="55" font-weight="700" letter-spacing="-1">Energia,</text>
+ <text x="0" y="-98" fill="#f3f0e8" font-family="Montserrat,Arial,sans-serif" font-size="55" font-weight="700" letter-spacing="-1">controle e</text>
+ <text x="0" y="-36" fill="#d7b766" font-family="Montserrat,Arial,sans-serif" font-size="55" font-weight="700" letter-spacing="-1">precisão.</text>
+ <text x="0" y="12" fill="#aeb5bb" font-family="Arial,sans-serif" font-size="17" letter-spacing="1.5">ELÉTRICA  •  CLIMATIZAÇÃO</text>
+ <rect x="0" y="54" width="5" height="70" fill="url(#gold)"/>
+ <text x="24" y="83" fill="#f1eee6" font-family="Montserrat,Arial,sans-serif" font-size="26" font-weight="700" letter-spacing="1">SENA PINHEIRO</text>
+ <text x="24" y="111" fill="#c7a65c" font-family="Arial,sans-serif" font-size="12" font-weight="600" letter-spacing="3">TERESINA  •  PI</text>
 </g>
 </svg>
