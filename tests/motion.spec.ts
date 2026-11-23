@@ -28,7 +28,7 @@ test('cinematic desktop performance and interaction demonstration',async({page})
  for(const row of await page.locator('.project').all()){
   await row.scrollIntoViewIfNeeded();await expect(row).toHaveAttribute('data-revealed','true');
   await page.waitForTimeout(1100);
-  await expect(row.locator('img')).toHaveCSS('object-fit','contain');
+  await expect(row.locator('img')).toHaveCSS('object-fit',await row.evaluate(el=>el.classList.contains('project--ifood-drone')?'cover':'contain'));
   await expect(row.locator('.project-image')).toHaveCSS('clip-path','none');
   const box=(await row.locator('.project-image').boundingBox())!;
   await page.mouse.move(box.x+box.width*.35,box.y+box.height*.4);await page.waitForTimeout(200);
@@ -76,6 +76,6 @@ test('prerendered content remains usable without JavaScript',async({browser})=>{
  const context=await browser.newContext({javaScriptEnabled:false});
  const page=await context.newPage();await page.goto(route);await page.waitForTimeout(1400);
  for(const item of await page.locator('.project-image, .project-copy, .about-award').all())await expect(item).toHaveCSS('opacity','1');
- await expect(page.locator('.project-link')).toHaveCount(4);
+ await expect(page.locator('.project-link')).toHaveCount(5);
  await page.locator('.ticket').click();await expect(page).toHaveURL(/#projects$/);await context.close();
 });
