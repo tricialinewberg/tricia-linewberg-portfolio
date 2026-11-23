@@ -57,7 +57,7 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
    const image=row.locator('img');
    await expect(destination).toHaveAttribute('target','_blank');
    await expect(destination).toHaveAttribute('rel','noopener noreferrer');
-   if(await row.evaluate(el=>el.classList.contains('project--ifood-drone'))){
+   if(await row.evaluate(el=>el.closest('.project')?.classList.contains('project--ifood-drone'))){
     await expect(destination).toHaveAttribute('href','https://ifood-drone-conceito.vercel.app/');
     await expect(destination).toHaveAccessibleName(new RegExp(copy.exploreProject));
     await expect(row.locator('.project-category')).toHaveText(copy.independentConcept);
@@ -69,11 +69,11 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
    }
    await expect.poll(()=>image.evaluate(img=>(img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
    const cover=(await row.locator('.project-image').boundingBox())!;
-   const copy=(await row.locator('.project-copy').boundingBox())!;
+   const projectCopy=(await row.locator('.project-copy').boundingBox())!;
    expect(cover.width).toBeGreaterThan(cover.height);
    expect(cover.width).toBeGreaterThanOrEqual(width<600?100:250);
    await expect(image).toHaveCSS('object-position','50% 50%');
-   expect(copy.x).toBeGreaterThan(cover.x+cover.width);
+   expect(projectCopy.x).toBeGreaterThan(cover.x+cover.width);
   }
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
   await page.locator('.ticket').click();

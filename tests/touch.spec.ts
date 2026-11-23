@@ -12,7 +12,7 @@ for(const width of [320,375,390,430])test(`touch feedback at ${width}px`,async({
  await page.waitForTimeout(100);await page.screenshot({path:`work/test-results/touch-ticket-${width}.png`});
  for(const project of await page.locator('.project').all()){
   await project.scrollIntoViewIfNeeded();await expect(project).toHaveAttribute('data-revealed','true');await page.waitForTimeout(1100);
-  await expect(project.locator('img')).toHaveCSS('object-fit','contain');
+  await expect(project.locator('img')).toHaveCSS('object-fit',await project.evaluate(el=>el.classList.contains('project--ifood-drone')?'cover':'contain'));
  }
  const card=page.locator('.competencies li').first();await card.scrollIntoViewIfNeeded();await page.waitForTimeout(1100);
  const plain=await card.evaluate(el=>getComputedStyle(el).backgroundImage);
