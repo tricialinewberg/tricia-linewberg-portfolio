@@ -9,7 +9,7 @@ for(const locale of ['pt-br','en','es'] as Locale[])for(const width of [320,1440
  const t=translations[locale];await expect(project.locator('.project-actions a')).toHaveCount(2);
  await expect(project.locator('.project-actions a').nth(0)).toHaveAccessibleName(`${t.exploreWebsite} — Assistant to the Villain — ${t.newTab}`);
  await expect(project.locator('.project-actions a').nth(1)).toHaveAccessibleName(`${t.viewCase} — Assistant to the Villain — ${t.newTab}`);
- await expect(project.locator('.project-copy > p')).toHaveText(t.descriptions[3]);
+ await expect(project.locator('.project-copy > p')).toHaveText(t.descriptions[5]);
  await expect(project.locator('img')).toHaveAttribute('src',`${base}images/01-cover.png`);
  await expect(project.locator('img')).toHaveCSS('object-fit','contain');
  await expect(page.locator('a a')).toHaveCount(0);await expect(page.locator('a.project-link')).toHaveCount(4);
