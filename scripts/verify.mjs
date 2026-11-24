@@ -7,12 +7,12 @@ for(const locale of locales){
  const base=process.env.VITE_BASE_PATH || '/';
  for(const match of html.matchAll(/(?:src|href)="(\/[^\"]+)"/g))assert.ok(match[1].startsWith(base),`Unprefixed URL: ${match[1]}`);
  if(process.env.SITE_URL)assert.ok(html.includes(`rel="canonical" href="${process.env.SITE_URL.replace(/\/$/,'')}/${locale}/"`));
- assert.equal((html.match(/class="project-link"/g)||[]).length,5);
+ assert.equal((html.match(/class="project-link"/g)||[]).length,6);
  assert.equal((html.match(/<h1 /g)||[]).length,1);
  for(const text of ['ADMIT ONE','mailto:triciaux@gmail.com','rel="noopener noreferrer"','name="description"'])assert.ok(html.includes(text));
- assert.equal(translations[locale].descriptions.length,5);
+ assert.equal(translations[locale].descriptions.length,6);
  assert.ok(!html.includes('Lumier'));
- const titles=['SATRA Wallet','iFood Drone','Bitcoin Beauty School','Assistant to the Villain','Avec — Redesign'];
+ const titles=['SATRA Wallet','iFood Drone','Sena Pinheiro','Bitcoin Beauty School','Avec — Redesign','Assistant to the Villain'];
  const positions=titles.map(title=>html.indexOf(`>${title}${title==='Assistant to the Villain'?'<span':'</h3>'}`));
  assert.ok(positions.every((position,i)=>position>=0&&(i===0||position>positions[i-1])));
 }

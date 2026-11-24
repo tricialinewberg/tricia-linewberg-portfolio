@@ -44,8 +44,8 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
   await page.evaluate(()=>document.fonts.ready);
   const heroBottom=await page.locator('.hero').evaluate(el=>el.getBoundingClientRect().bottom);
   await page.screenshot({path:`work/test-results/hero-${locale}-${width}.png`,fullPage:true,clip:{x:0,y:0,width,height:Math.ceil(heroBottom)}});
-  await expect(page.locator('.project-link')).toHaveCount(5);
-  await expect(page.locator('.project h3')).toHaveText(['SATRA Wallet','iFood Drone','Bitcoin Beauty School',new RegExp('^Assistant to the Villain'),'Avec — Redesign']);
+  await expect(page.locator('.project-link')).toHaveCount(6);
+  await expect(page.locator('.project h3')).toHaveText(['SATRA Wallet','iFood Drone','Sena Pinheiro','Bitcoin Beauty School','Avec — Redesign',new RegExp('^Assistant to the Villain')]);
   await expect(page.locator('#projects')).not.toContainText('Lumier');
   await expect(page.locator('#works-title')).toHaveText(copy.works);
   await expect(page.locator('.works .section-heading > p')).toHaveText(copy.worksIntro);
@@ -62,6 +62,11 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
     await expect(destination).toHaveAccessibleName(new RegExp(copy.exploreProject));
     await expect(row.locator('.project-category')).toHaveText(copy.independentConcept);
     await expect(image).toHaveCSS('object-fit','cover');
+   }else if(await row.evaluate(el=>el.closest('.project')?.classList.contains('project--sena-pinheiro'))){
+    await expect(destination).toHaveAttribute('href','https://sena-pinheiro.vercel.app/');
+    await expect(destination).toHaveAccessibleName(new RegExp(copy.exploreWebsite));
+    await expect(row.locator('.project-copy > p')).toHaveText(copy.descriptions[2]);
+    await expect(image).toHaveCSS('object-fit','contain');
    }else{
     await expect(destination).toHaveAttribute('href',/^https:\/\/www\.behance\.net\/gallery\//);
     await expect(destination).toHaveAccessibleName(/Behance/);

@@ -9,10 +9,10 @@ for(const locale of ['pt-br','en','es'] as Locale[])for(const width of [320,1440
  const t=translations[locale];await expect(project.locator('.project-actions a')).toHaveCount(2);
  await expect(project.locator('.project-actions a').nth(0)).toHaveAccessibleName(`${t.exploreWebsite} — Assistant to the Villain — ${t.newTab}`);
  await expect(project.locator('.project-actions a').nth(1)).toHaveAccessibleName(`${t.viewCase} — Assistant to the Villain — ${t.newTab}`);
- await expect(project.locator('.project-copy > p')).toHaveText(t.descriptions[3]);
+ await expect(project.locator('.project-copy > p')).toHaveText(t.descriptions[5]);
  await expect(project.locator('img')).toHaveAttribute('src',`${base}images/01-cover.png`);
  await expect(project.locator('img')).toHaveCSS('object-fit','contain');
- await expect(page.locator('a a')).toHaveCount(0);await expect(page.locator('a.project-link')).toHaveCount(4);
+ await expect(page.locator('a a')).toHaveCount(0);await expect(page.locator('a.project-link')).toHaveCount(5);
  expect(await project.locator('.project-link').evaluate(el=>el.tagName)).toBe('DIV');
  await expect(project.locator('.project-link')).not.toHaveAttribute('tabindex');
  const links=project.locator('a');await expect(links).toHaveCount(4);
@@ -20,12 +20,13 @@ for(const locale of ['pt-br','en','es'] as Locale[])for(const width of [320,1440
   await expect(links.nth(i)).toHaveAttribute('href',i===2?live:behance);
   await expect(links.nth(i)).toHaveAttribute('target','_blank');await expect(links.nth(i)).toHaveAttribute('rel','noopener noreferrer');
  }
- await links.first().focus();
+ await page.locator('.project--avec-redesign > a').focus();
+ await page.keyboard.press('Tab');
  for(let i=0;i<4;i++){
   await expect(links.nth(i)).toBeFocused();await expect(links.nth(i)).toHaveCSS('outline-style','solid');
   await page.keyboard.press('Tab');
  }
- await expect(page.locator('.project--avec-redesign > a')).toBeFocused();
+ await expect(page.locator('.contact-links a').first()).toBeFocused();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await expect(project).toHaveAttribute('data-revealed','true');
  await page.mouse.move(0,0);await project.screenshot({path:`work/test-results/assistant-links-${locale}-${width}.png`});
