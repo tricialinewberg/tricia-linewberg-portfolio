@@ -10,7 +10,7 @@ for(const locale of ['pt-br','en','es'] as Locale[])for(const width of [320,1440
  await expect(project.locator('.project-actions a').nth(0)).toHaveAccessibleName(`${t.exploreWebsite} — Assistant to the Villain — ${t.newTab}`);
  await expect(project.locator('.project-actions a').nth(1)).toHaveAccessibleName(`${t.viewCase} — Assistant to the Villain — ${t.newTab}`);
  await expect(project.locator('.project-copy > p')).toHaveText(t.descriptions[5]);
- await expect(project.locator('img')).toHaveAttribute('src',`${base}images/01-cover.png`);
+ await expect(project.locator('img')).toHaveAttribute('src',`${base}images/Banner%20de%20F%C3%A3_%20Assistente%20do%20Vil%C3%A3o.png`);
  await expect(project.locator('img')).toHaveCSS('object-fit','contain');
  await expect(page.locator('a a')).toHaveCount(0);await expect(page.locator('a.project-link')).toHaveCount(5);
  expect(await project.locator('.project-link').evaluate(el=>el.tagName)).toBe('DIV');
