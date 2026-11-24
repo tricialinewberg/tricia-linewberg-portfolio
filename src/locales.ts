@@ -4,7 +4,7 @@ export const languages = {'pt-br':'Português (Brasil)',en:'English',es:'Españo
 export const htmlLang = {'pt-br':'pt-BR',en:'en',es:'es'};
 type Pair = readonly [string, string];
 type NavigationLabels = readonly [string, string, string];
-type ProjectDescriptions = readonly [string, string, string, string, string];
+type ProjectDescriptions = readonly [string, string, string, string, string, string];
 type CompetencyLabels = readonly [string, string, string, string, string, string, string, string];
 export interface Copy {
  title:string; description:string; nav:NavigationLabels; skip:string; menu:string; close:string; language:string;
@@ -22,7 +22,7 @@ export const translations:Record<Locale,Copy> = {
  welcome:'Bem-vindo, bem-vinda!',intro:'Você chegou ao portfólio de',subtitle:'Um espetáculo de estratégia de produto, design de interfaces e narrativas digitais.',ticket:'ADMIT ONE — conhecer os projetos',
  portrait:'Trícia Linewberg usando cartola em um retrato teatral',missingPortrait:'Retrato original em breve',missingCover:'Capa original em breve',cover:'Capa do projeto',home:'Trícia Linewberg — início',
  act:'Ato',works:'Projetos',worksIntro:'Confira alguns dos trabalhos que já desenvolvi.',view:'Ver no Behance',exploreWebsite:'Explorar o site',viewCase:'Ver case no Behance',newTab:'abre em uma nova aba',featured:'1º lugar · Hack4Freedom 2026',independentConcept:'Conceito independente · Product Design',exploreProject:'Explorar projeto',
- descriptions:["Carteira Bitcoin · 1º lugar no Hack4Freedom 2026.","Uma experiência conceitual de entregas por drones integrada à jornada do iFood, explorando novas possibilidades para superar barreiras de mobilidade urbana.","Educação Bitcoin por meio da beleza.","Website de ficção · Projeto de fã.","Auditoria UX/UI e redesign de experiência."],
+ descriptions:["Carteira Bitcoin · 1º lugar no Hack4Freedom 2026.","Uma experiência conceitual de entregas por drones integrada à jornada do iFood, explorando novas possibilidades para superar barreiras de mobilidade urbana.","Site para uma empresa de energia e climatização.","Educação Bitcoin por meio da beleza.","Auditoria UX/UI e redesign de experiência.","Website de ficção · Projeto de fã."],
  about:"Sobre",aboutLead:"Designer com experiência em UX/UI, produto e experiências digitais.",
  skillsTitle:"Competências",skills:["UX/UI Designer","Product Designer","+6 anos de experiência","Pós em Inovação e Design Digital","IA no processo criativo","Product Analyst","Data-driven UX","Web Designer"],
  recognition:'Premiações',awards:['1º lugar','1º lugar'],awardNames:["Hack4Freedom 2026","Bootcamp de UX Writing para Chatbots"],awardsDetail:["SATRA Wallet","Novembro de 2025"],
@@ -34,7 +34,7 @@ export const translations:Record<Locale,Copy> = {
  welcome:'Welcome, welcome!',intro:"You've arrived at the portfolio of",subtitle:'A grand display of product thinking, interface design, and digital storytelling.',ticket:'ADMIT ONE — explore selected works',
  portrait:'Trícia Linewberg wearing a top hat in a theatrical portrait',missingPortrait:'Original portrait coming soon',missingCover:'Original cover coming soon',cover:'Project cover for',home:'Trícia Linewberg — home',
  act:'Act',works:'Projects',worksIntro:'Take a look at some of the projects I’ve developed.',view:'View on Behance',exploreWebsite:'Explore Website',viewCase:'View Case on Behance',newTab:'opens in a new tab',featured:'1st place · Hack4Freedom 2026',independentConcept:'Independent concept · Product Design',exploreProject:'Explore project',
- descriptions:["Bitcoin wallet · Hack4Freedom 2026 winner.","A conceptual drone delivery experience integrated into the iFood journey, exploring new possibilities for overcoming urban mobility barriers.","Bitcoin education through the language of beauty.","Fictional website · Fan project.","UX/UI audit and experience redesign."],
+ descriptions:["Bitcoin wallet · Hack4Freedom 2026 winner.","A conceptual drone delivery experience integrated into the iFood journey, exploring new possibilities for overcoming urban mobility barriers.","Website for an energy and climate control company.","Bitcoin education through the language of beauty.","UX/UI audit and experience redesign.","Fictional website · Fan project."],
  about:"About",aboutLead:"Designer with experience in UX/UI, product, and digital experiences.",
  skillsTitle:"Competencies",skills:["UX/UI Designer","Product Designer","6+ years of experience","Postgraduate qualification in Innovation and Digital Design","AI in the creative process","Product Analyst","Data-driven UX","Web Designer"],
  recognition:'Awards',awards:['1st place','1st place'],awardNames:["Hack4Freedom 2026","UX Writing for Chatbots Bootcamp"],awardsDetail:["SATRA Wallet","November 2025"],
@@ -46,7 +46,7 @@ export const translations:Record<Locale,Copy> = {
  welcome:'¡Bienvenido, bienvenida!',intro:'Has llegado al portafolio de',subtitle:'Una muestra de estrategia de producto, diseño de interfaces y narrativa digital.',ticket:'ADMIT ONE — explorar los proyectos',
  portrait:'Trícia Linewberg con sombrero de copa en un retrato teatral',missingPortrait:'Retrato original próximamente',missingCover:'Portada original próximamente',cover:'Portada del proyecto',home:'Trícia Linewberg — inicio',
  act:'Acto',works:'Proyectos',worksIntro:'Mira algunos de los proyectos que ya he desarrollado.',view:'Ver en Behance',exploreWebsite:'Explorar el sitio web',viewCase:'Ver caso en Behance',newTab:'se abre en una pestaña nueva',featured:'1.er puesto · Hack4Freedom 2026',independentConcept:'Concepto independiente · Product Design',exploreProject:'Explorar proyecto',
- descriptions:["Billetera Bitcoin · Ganadora del Hack4Freedom 2026.","Una experiencia conceptual de entregas con drones integrada en el recorrido de iFood, explorando nuevas posibilidades para superar las barreras de movilidad urbana.","Educación Bitcoin a través de la belleza.","Sitio de ficción · Proyecto de fan.","Auditoría UX/UI y rediseño de experiencia."],
+ descriptions:["Billetera Bitcoin · Ganadora del Hack4Freedom 2026.","Una experiencia conceptual de entregas con drones integrada en el recorrido de iFood, explorando nuevas posibilidades para superar las barreras de movilidad urbana.","Sitio web para una empresa de energía y climatización.","Educación Bitcoin a través de la belleza.","Auditoría UX/UI y rediseño de experiencia.","Sitio de ficción · Proyecto de fan."],
  about:"Sobre mí",aboutLead:"Diseñadora con experiencia en UX/UI, producto y experiencias digitales.",
  skillsTitle:"Competencias",skills:["Diseñadora UX/UI","Diseñadora de producto","Más de 6 años de experiencia","Posgrado en Innovación y Diseño Digital","IA en el proceso creativo","Product Analyst","Data-driven UX","Diseñadora web"],
  recognition:'Premios',awards:['1.er puesto','1.er puesto'],awardNames:["Hack4Freedom 2026","Bootcamp de UX Writing para Chatbots"],awardsDetail:["SATRA Wallet","Noviembre de 2025"],
