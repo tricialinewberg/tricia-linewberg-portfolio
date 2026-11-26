@@ -77,7 +77,13 @@ for(const locale of ['pt-br','en','es'])for(const width of [320,375,768,1024,128
    const projectCopy=(await row.locator('.project-copy').boundingBox())!;
    expect(cover.width).toBeGreaterThan(cover.height);
    expect(cover.width).toBeGreaterThanOrEqual(width<600?100:250);
-   await expect(image).toHaveCSS('object-position','50% 50%');
+   const isSatra=await row.evaluate(el=>el.closest('.project')?.classList.contains('project--satra-wallet'));
+   await expect(image).toHaveCSS('object-position',isSatra?'50% 100%':'50% 50%');
+   if(isSatra) {
+    const asset=(await row.locator('.project-image .asset').boundingBox())!;
+    const img=(await image.boundingBox())!;
+    expect(img.y+img.height).toBeLessThanOrEqual(asset.y+asset.height+1);
+   }
    expect(projectCopy.x).toBeGreaterThan(cover.x+cover.width);
   }
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
