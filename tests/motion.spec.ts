@@ -76,6 +76,6 @@ test('prerendered content remains usable without JavaScript',async({browser})=>{
  const context=await browser.newContext({javaScriptEnabled:false});
  const page=await context.newPage();await page.goto(route);await page.waitForTimeout(1400);
  for(const item of await page.locator('.project-image, .project-copy, .about-award').all())await expect(item).toHaveCSS('opacity','1');
- await expect(page.locator('.project-link')).toHaveCount(6);
+ await expect(page.locator('.project-link')).toHaveCount(7);
  await page.locator('.ticket').click();await expect(page).toHaveURL(/#projects$/);await context.close();
 });
